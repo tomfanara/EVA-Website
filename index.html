@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>EVA Systems, LLC – Pods. Core. Grid.</title>
+  <title>EVA Systems — Autonomous Retail Infrastructure</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="EVA Systems, LLC – simulation-first, robot-native micro-fulfillment platform built on Pods, Core, and Grid." />
+  <meta name="description" content="EVA Systems deploys autonomous retail nodes inside multifamily and commercial properties — stocked by hyper-local wholesale suppliers, fulfilled by gig drivers, orchestrated by EVA Cloud." />
   <style>
     :root {
       --bg: #050608;
@@ -25,54 +25,28 @@
       --shadow-glow: 0 0 40px rgba(53, 226, 138, 0.15);
       --max-width: 1120px;
     }
-    
+
     @keyframes float-up {
-      0% {
-        transform: translateY(8px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-    
-    @keyframes pulse-glow {
-      0%, 100% {
-        box-shadow: 0 0 20px rgba(53, 226, 138, 0.4);
-      }
-      50% {
-        box-shadow: 0 0 40px rgba(53, 226, 138, 0.8);
-      }
-    }
-    
-    @keyframes slide-in-left {
-      0% {
-        transform: translateX(-20px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-    
-    @keyframes slide-in-right {
-      0% {
-        transform: translateX(20px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
+      0% { transform: translateY(8px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(53, 226, 138, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(53, 226, 138, 0.8); }
     }
+
+    @keyframes slide-in-left {
+      0% { transform: translateX(-20px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slide-in-right {
+      0% { transform: translateX(20px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: var(--font-main);
@@ -81,15 +55,12 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    
+
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
         radial-gradient(circle at 20% 50%, rgba(53, 226, 138, 0.05) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(79, 179, 255, 0.05) 0%, transparent 50%),
         radial-gradient(circle at 40% 20%, rgba(232, 74, 255, 0.03) 0%, transparent 50%);
@@ -97,10 +68,7 @@
       z-index: -1;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     main {
       max-width: var(--max-width);
@@ -116,11 +84,7 @@
       gap: 16px;
     }
 
-    .logo-mark {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+    .logo-mark { display: flex; align-items: center; gap: 14px; }
 
     .logo-icon {
       width: 95px;
@@ -192,23 +156,18 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .hero::before {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -30%;
-      width: 600px;
-      height: 600px;
+      top: -50%; right: -30%;
+      width: 600px; height: 600px;
       background: radial-gradient(circle, rgba(79, 179, 255, 0.1) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
-    
-    .hero > div:first-child {
-      position: relative;
-      z-index: 1;
-    }
+
+    .hero > div:first-child { position: relative; z-index: 1; }
 
     .hero-kicker {
       font-size: 0.75rem;
@@ -232,9 +191,7 @@
       animation: slide-in-left 0.8s ease-out;
     }
 
-    .hero-title span {
-      color: var(--accent);
-    }
+    .hero-title span { color: var(--accent); }
 
     .hero-subtitle {
       color: var(--muted);
@@ -262,7 +219,7 @@
       transition: all 0.3s ease;
       cursor: pointer;
     }
-    
+
     .tag:hover {
       border-color: rgba(79, 179, 255, 0.4);
       background: rgba(79, 179, 255, 0.1);
@@ -274,7 +231,7 @@
       color: var(--accent);
       background: var(--accent-soft);
     }
-    
+
     .tag--accent:hover {
       border-color: var(--accent);
       box-shadow: 0 0 20px rgba(53, 226, 138, 0.3);
@@ -300,10 +257,8 @@
       color: #020305;
       box-shadow: 0 8px 25px rgba(53, 226, 138, 0.4);
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
     }
-    
+
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 40px rgba(53, 226, 138, 0.6);
@@ -322,7 +277,7 @@
       transition: all 0.3s ease;
       font-weight: 600;
     }
-    
+
     .btn-ghost:hover {
       background: var(--accent-soft);
       box-shadow: 0 0 20px rgba(53, 226, 138, 0.3);
@@ -344,15 +299,12 @@
       overflow: hidden;
       box-shadow: inset 0 0 40px rgba(53, 226, 138, 0.05);
     }
-    
+
     .hero-right::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
         linear-gradient(135deg, transparent 0%, rgba(79, 179, 255, 0.05) 50%),
         linear-gradient(45deg, rgba(53, 226, 138, 0.05) 25%, transparent 25%);
       pointer-events: none;
@@ -372,13 +324,18 @@
       margin-bottom: 12px;
     }
 
-    .eva-equation span {
-      color: var(--accent);
-    }
+    .eva-equation span { color: var(--accent); }
 
     .pillars-row {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .pillars-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
       margin-bottom: 14px;
     }
@@ -393,19 +350,12 @@
       transition: all 0.3s ease;
       overflow: hidden;
     }
-    
-    .pillar-card:nth-child(1) {
-      border-color: rgba(53, 226, 138, 0.4);
-    }
-    
-    .pillar-card:nth-child(2) {
-      border-color: rgba(79, 179, 255, 0.4);
-    }
-    
-    .pillar-card:nth-child(3) {
-      border-color: rgba(232, 74, 255, 0.4);
-    }
-    
+
+    .pillar-card:nth-child(1) { border-color: rgba(53, 226, 138, 0.4); }
+    .pillar-card:nth-child(2) { border-color: rgba(79, 179, 255, 0.4); }
+    .pillar-card:nth-child(3) { border-color: rgba(232, 74, 255, 0.4); }
+    .pillar-card:nth-child(4) { border-color: rgba(255, 179, 71, 0.4); }
+
     .pillar-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -426,10 +376,7 @@
       margin-bottom: 4px;
     }
 
-    .pillar-desc {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
+    .pillar-desc { font-size: 0.75rem; color: var(--muted); }
 
     .hero-bottom-text {
       font-size: 0.78rem;
@@ -437,9 +384,7 @@
       margin-top: 10px;
     }
 
-    .hero-bottom-text span {
-      color: var(--accent);
-    }
+    .hero-bottom-text span { color: var(--accent); }
 
     section {
       margin-bottom: 48px;
@@ -449,18 +394,16 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     section:nth-child(2n) {
       background: linear-gradient(135deg, rgba(44, 28, 70, 0.2) 0%, rgba(5, 6, 8, 0.1) 100%);
     }
-    
+
     section::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 200%;
-      height: 1px;
+      top: 0; left: -100%;
+      width: 200%; height: 1px;
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
       opacity: 0.1;
     }
@@ -512,27 +455,23 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .card::before {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200px;
-      height: 200px;
+      top: -50%; right: -50%;
+      width: 200px; height: 200px;
       background: radial-gradient(circle, rgba(53, 226, 138, 0.1) 0%, transparent 70%);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-    
+
     .card:hover {
       border-color: rgba(53, 226, 138, 0.2);
       box-shadow: 0 12px 48px rgba(53, 226, 138, 0.15), inset 0 0 20px rgba(79, 179, 255, 0.05);
     }
-    
-    .card:hover::before {
-      opacity: 1;
-    }
+
+    .card:hover::before { opacity: 1; }
 
     .card-title {
       font-size: 0.95rem;
@@ -546,8 +485,7 @@
     .card-title::before {
       content: '';
       display: inline-block;
-      width: 4px;
-      height: 4px;
+      width: 4px; height: 4px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
       box-shadow: 0 0 10px rgba(53, 226, 138, 0.5);
@@ -559,11 +497,7 @@
       margin-bottom: 10px;
     }
 
-    .card ul {
-      list-style: none;
-      font-size: 0.86rem;
-      color: var(--text);
-    }
+    .card ul { list-style: none; font-size: 0.86rem; color: var(--text); }
 
     .card li {
       margin-bottom: 8px;
@@ -575,8 +509,7 @@
     .card li::before {
       content: "";
       margin-top: 6px;
-      width: 6px;
-      height: 6px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
       flex-shrink: 0;
@@ -594,7 +527,7 @@
       border-left: 3px solid var(--accent);
     }
 
-    /* EVA Pods section */
+    /* EVA Mart detail layout */
 
     .pods-layout {
       display: grid;
@@ -613,26 +546,22 @@
       min-height: 280px;
       box-shadow: 0 0 40px rgba(79, 179, 255, 0.1);
     }
-    
+
     .pods-visual::before {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -30%;
-      width: 400px;
-      height: 400px;
+      top: -50%; right: -30%;
+      width: 400px; height: 400px;
       background: radial-gradient(circle, rgba(79, 179, 255, 0.15) 0%, transparent 70%);
       border-radius: 50%;
       animation: float-up 4s ease-in-out infinite;
     }
-    
+
     .pods-visual::after {
       content: '';
       position: absolute;
-      bottom: -40%;
-      left: -20%;
-      width: 300px;
-      height: 300px;
+      bottom: -40%; left: -20%;
+      width: 300px; height: 300px;
       background: radial-gradient(circle, rgba(53, 226, 138, 0.1) 0%, transparent 70%);
       border-radius: 50%;
     }
@@ -676,7 +605,7 @@
       transition: all 0.3s ease;
       cursor: pointer;
     }
-    
+
     .pods-badge:hover {
       border-color: var(--accent);
       box-shadow: 0 0 15px rgba(53, 226, 138, 0.3);
@@ -696,15 +625,14 @@
     }
 
     .pods-drive-dot {
-      width: 8px;
-      height: 8px;
+      width: 8px; height: 8px;
       border-radius: 999px;
       background: var(--accent);
       box-shadow: 0 0 10px rgba(53, 226, 138, 0.8);
       flex-shrink: 0;
     }
 
-    /* Workflow */
+    /* Phase 0 workflow */
 
     .workflow-steps {
       display: grid;
@@ -712,13 +640,11 @@
       gap: 12px;
       position: relative;
     }
-    
+
     .workflow-steps::before {
       content: '';
       position: absolute;
-      top: 24px;
-      left: 0;
-      right: 0;
+      top: 24px; left: 0; right: 0;
       height: 2px;
       background: linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%);
       z-index: 0;
@@ -735,7 +661,7 @@
       transition: all 0.3s ease;
       z-index: 1;
     }
-    
+
     .step-card:hover {
       border-color: rgba(53, 226, 138, 0.3);
       transform: translateY(-4px);
@@ -746,7 +672,6 @@
       font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: var(--text);
       margin-bottom: 8px;
       display: inline-block;
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
@@ -756,17 +681,10 @@
       color: #020305;
     }
 
-    .step-title {
-      font-weight: 560;
-      margin-bottom: 4px;
-    }
+    .step-title { font-weight: 560; margin-bottom: 4px; }
+    .step-desc { font-size: 0.8rem; color: var(--muted); }
 
-    .step-desc {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* Leadership */
+    /* Team */
 
     .leaders-grid {
       display: grid;
@@ -783,36 +701,23 @@
       align-items: center;
       gap: 8px;
     }
-    
+
     .leader-name::before {
       content: '';
       display: inline-block;
-      width: 3px;
-      height: 16px;
+      width: 3px; height: 16px;
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
       border-radius: 999px;
     }
 
-    .leader-title {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
+    .leader-title { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+    .leader-card ul { font-size: 0.86rem; }
+    .leader-card { position: relative; }
 
-    .leader-card ul {
-      font-size: 0.86rem;
-    }
-    
-    .leader-card {
-      position: relative;
-    }
-    
     .leader-card::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 3px;
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
       border-radius: 16px 16px 0 0;
@@ -829,14 +734,8 @@
       box-shadow: inset 0 0 20px rgba(53, 226, 138, 0.05);
     }
 
-    .duo-footer strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .duo-footer span {
-      color: var(--accent-cool);
-    }
+    .duo-footer strong { color: var(--accent); font-weight: 600; }
+    .duo-footer span { color: var(--accent-cool); }
 
     /* Footer */
 
@@ -861,10 +760,8 @@
       font-weight: 500;
       transition: color 0.3s ease;
     }
-    
-    footer a:hover {
-      color: var(--accent-cool);
-    }
+
+    footer a:hover { color: var(--accent-cool); }
 
     /* Responsive */
 
@@ -873,65 +770,26 @@
         grid-template-columns: minmax(0, 1fr);
         padding: 32px 24px;
       }
-
-      .hero-right {
-        order: -1;
-      }
-
-      .grid-2,
-      .pods-layout,
-      .leaders-grid {
+      .hero-right { order: -1; }
+      .grid-2, .pods-layout, .leaders-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-      
       .workflow-steps {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
-      
-      .workflow-steps::before {
-        display: none;
-      }
+      .workflow-steps::before { display: none; }
     }
 
     @media (max-width: 640px) {
-      main {
-        padding-inline: 12px;
-        padding-bottom: 48px;
-      }
-
-      section {
-        padding: 20px 16px;
-      }
-
-      .hero {
-        padding: 20px 16px;
-        gap: 24px;
-      }
-
-      .section-title {
-        font-size: 1.15rem;
-      }
-      
-      .hero-title {
-        font-size: clamp(1.6rem, 5vw, 2rem);
-      }
-
-      .workflow-steps {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      
-      .pillars-row {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      
-      header {
-        flex-direction: column;
-        gap: 12px;
-      }
-      
-      .nav-pill {
-        font-size: 0.7rem;
-      }
+      main { padding-inline: 12px; padding-bottom: 48px; }
+      section { padding: 20px 16px; }
+      .hero { padding: 20px 16px; gap: 24px; }
+      .section-title { font-size: 1.15rem; }
+      .hero-title { font-size: clamp(1.6rem, 5vw, 2rem); }
+      .workflow-steps { grid-template-columns: minmax(0, 1fr); }
+      .pillars-row-2 { grid-template-columns: minmax(0, 1fr); }
+      header { flex-direction: column; gap: 12px; }
+      .nav-pill { font-size: 0.7rem; }
     }
   </style>
 </head>
@@ -942,357 +800,471 @@
         <img src="eva_logo.png" alt="EVA Systems Logo" class="logo-icon">
         <div>
           <div class="logo-text-main">EVA Systems</div>
-          <div class="logo-text-sub">Pods · Core · Grid</div>
+          <div class="logo-text-sub">Autonomous Retail Infrastructure</div>
         </div>
       </div>
       <div class="nav-pill">
         <span class="nav-dot"></span>
-        <span>Simulation‑first · Robot‑native</span>
+        <span>Houston Metro · Phase 0 Active</span>
       </div>
     </header>
 
     <!-- Hero -->
     <section class="hero" id="top">
       <div>
-        <div class="hero-kicker">The solution</div>
+        <div class="hero-kicker">Autonomous Retail Infrastructure</div>
         <h1 class="hero-title">
-          Turning <span>any location</span> into an autonomous micro‑fulfillment business.
+          The store that <span>runs itself.</span>
         </h1>
         <p class="hero-subtitle">
-          EVA Systems, LLC is a simulation‑first, robot‑native platform that unifies
-          <strong>Environment</strong>, <strong>Vehicle</strong>, and <strong>Automation</strong>
-          into deployable micro‑fulfillment Pods.
+          EVA deploys autonomous retail nodes inside apartments, offices, and mixed-use properties — stocked by a hyper-local wholesale mesh, fulfilled by gig drivers, and orchestrated by EVA Cloud. 24/7. No staff. Wholesale prices.
         </p>
         <div class="hero-tags">
-          <span class="tag tag--accent">E + V + A architecture</span>
-          <span class="tag">USD digital twins</span>
-          <span class="tag">Isaac Sim workflows</span>
-          <span class="tag">Jetson‑powered robots</span>
+          <span class="tag tag--accent">EVA Mart</span>
+          <span class="tag">EVA Restock</span>
+          <span class="tag">EVA DropShift</span>
+          <span class="tag">EVA Cloud</span>
         </div>
         <div class="hero-cta-row">
-          <button class="btn-primary" type="button">Request investor deck</button>
-          <button class="btn-ghost" type="button">Explore EVA pillars</button>
+          <button class="btn-primary" type="button" onclick="window.location.href='mailto:thomas@eva-systems.net?subject=Investor Deck Request'">Request Investor Deck</button>
+          <button class="btn-ghost" type="button" onclick="document.getElementById('platform').scrollIntoView({behavior:'smooth'})">Explore the Platform</button>
         </div>
         <p class="hero-meta">
-          Virtual → Physical · Simulation → Deployment · Robots → Businesses
+          Retail Margin · Logistics Margin · Delivery Margin · Future Autonomy Margin
         </p>
       </div>
       <aside class="hero-right">
-        <div class="hero-grid-label">EVA architecture</div>
-        <div class="eva-equation">
-          <span>E</span> + V + A
-        </div>
-        <div class="pillars-row">
+        <div class="hero-grid-label">The EVA Stack</div>
+        <div class="eva-equation"><span>Mart</span> + Restock + DropShift + Cloud</div>
+        <div class="pillars-row-2">
           <div class="pillar-card">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom: 6px; opacity: 0.8;">
-              <circle cx="12" cy="12" r="10" stroke="#35e28a" stroke-width="2"/>
-              <circle cx="12" cy="12" r="6" fill="#35e28a" opacity="0.2"/>
-              <circle cx="12" cy="7" r="2" fill="#35e28a"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
+              <rect x="3" y="4" width="18" height="16" rx="2" stroke="#35e28a" stroke-width="2"/>
+              <line x1="3" y1="9" x2="21" y2="9" stroke="#35e28a" stroke-width="1.5"/>
+              <line x1="8" y1="14" x2="16" y2="14" stroke="#35e28a" stroke-width="1.5"/>
+              <line x1="8" y1="17" x2="13" y2="17" stroke="#35e28a" stroke-width="1.5"/>
             </svg>
-            <div class="pillar-label">Pillar E</div>
-            <div class="pillar-name">Pods</div>
-            <div class="pillar-desc">
-              USD digital twin environments → autonomous micro‑fulfillment Pods.
-            </div>
+            <div class="pillar-label">Wedge Product</div>
+            <div class="pillar-name">EVA Mart</div>
+            <div class="pillar-desc">Autonomous retail node. 24/7. No staff.</div>
           </div>
           <div class="pillar-card">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom: 6px; opacity: 0.8;">
-              <rect x="3" y="6" width="18" height="12" rx="2" stroke="#4fb3ff" stroke-width="2"/>
-              <line x1="9" y1="6" x2="9" y2="18" stroke="#4fb3ff" stroke-width="1.5"/>
-              <line x1="15" y1="6" x2="15" y2="18" stroke="#4fb3ff" stroke-width="1.5"/>
-              <circle cx="12" cy="12" r="2" fill="#4fb3ff" opacity="0.6"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
+              <circle cx="12" cy="5" r="3" stroke="#4fb3ff" stroke-width="2"/>
+              <circle cx="5" cy="19" r="2" stroke="#4fb3ff" stroke-width="2"/>
+              <circle cx="19" cy="19" r="2" stroke="#4fb3ff" stroke-width="2"/>
+              <line x1="12" y1="8" x2="5" y2="17" stroke="#4fb3ff" stroke-width="1.5"/>
+              <line x1="12" y1="8" x2="19" y2="17" stroke="#4fb3ff" stroke-width="1.5"/>
             </svg>
-            <div class="pillar-label">Pillar V</div>
-            <div class="pillar-name">Core</div>
-            <div class="pillar-desc">
-              URDF digital twin robots → Jetson‑powered physical robots.
-            </div>
+            <div class="pillar-label">Supply Engine</div>
+            <div class="pillar-name">EVA Restock</div>
+            <div class="pillar-desc">Hyper-local wholesale sourcing mesh.</div>
           </div>
           <div class="pillar-card">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom: 6px; opacity: 0.8;">
-              <circle cx="6" cy="12" r="2.5" stroke="#e84aff" stroke-width="2"/>
-              <circle cx="18" cy="12" r="2.5" stroke="#e84aff" stroke-width="2"/>
-              <circle cx="12" cy="12" r="2.5" stroke="#e84aff" stroke-width="2" fill="#e84aff" opacity="0.3"/>
-              <line x1="8.5" y1="12" x2="10.5" y2="12" stroke="#e84aff" stroke-width="1.5"/>
-              <line x1="13.5" y1="12" x2="15.5" y2="12" stroke="#e84aff" stroke-width="1.5"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="#e84aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <div class="pillar-label">Pillar A</div>
-            <div class="pillar-name">Grid</div>
-            <div class="pillar-desc">
-              Isaac Sim ↔ EVA Cloud orchestration → autonomous networks.
-            </div>
+            <div class="pillar-label">Last Mile</div>
+            <div class="pillar-name">EVA DropShift</div>
+            <div class="pillar-desc">Gig delivery mesh. 2–8 hr cycles.</div>
+          </div>
+          <div class="pillar-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
+              <circle cx="12" cy="12" r="9" stroke="#ffb347" stroke-width="2"/>
+              <path d="M12 8v4l3 3" stroke="#ffb347" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div class="pillar-label">Orchestration</div>
+            <div class="pillar-name">EVA Cloud</div>
+            <div class="pillar-desc">Inventory, routing, and SLA logic.</div>
           </div>
         </div>
         <p class="hero-bottom-text">
-          EVA is a three‑pillar robotics platform unifying
-          <span>Environment</span>, <span>Vehicle</span>, and <span>Automation</span>
-          into a single deployment‑ready stack.
+          Four interlocking layers. One <span>autonomous retail network.</span>
         </p>
       </aside>
     </section>
 
-    <!-- EVA pillars overview -->
-    <section id="pillars">
-      <div class="section-kicker">Architecture</div>
-      <h2 class="section-title">EVA = Environment + Vehicle + Automation</h2>
+    <!-- The Platform -->
+    <section id="platform">
+      <div class="section-kicker">The Platform</div>
+      <h2 class="section-title">Four products. One network.</h2>
       <p class="section-lead">
-        EVA is a three‑pillar robotics platform that starts in simulation and ends in
-        fully autonomous micro‑fulfillment businesses.
+        EVA is not a single product — it's a stacked infrastructure play. Each layer solves a real operational problem and generates its own revenue stream.
       </p>
 
       <div class="grid-2">
         <div class="card">
-          <h3 class="card-title">Pillar E: Pods (Environment Layer)</h3>
-          <p class="card-subtitle">Virtual Pod (USD World)</p>
+          <h3 class="card-title">EVA Mart — Autonomous Retail Node</h3>
+          <p class="card-subtitle">The wedge for adoption.</p>
           <ul>
-            <li>Full digital twin micro‑environment.</li>
-            <li>Modeled in USD and simulated in Isaac Sim.</li>
-            <li>Workflow validation before deployment.</li>
+            <li>Fully autonomous, on-site retail unit for apartments, offices, and mixed-use properties.</li>
+            <li>Sells dry goods, essentials, paper goods, cleaning supplies, snacks, and tenant-use items.</li>
+            <li>Operates 24/7 with zero staff.</li>
+            <li>Wholesale economics deliver lower prices than any convenience retail alternative.</li>
+            <li>Designed for high-velocity, high-frequency repeat purchases.</li>
           </ul>
-          <p class="card-subtitle" style="margin-top:10px;">Physical Pod (Micro‑Fulfillment Business)</p>
-          <ul>
-            <li>EVAMart, EVAPharm, EVAStore concepts.</li>
-            <li>Autonomous, hyper‑local retail units.</li>
-            <li>Robot‑native interior; fixed, mobile, or self‑mobile.</li>
-          </ul>
-          <p class="tagline">Pods = the environment where autonomy lives.</p>
+          <p class="tagline">Tenants shop at wholesale prices without leaving their building.</p>
         </div>
 
         <div class="card">
-          <h3 class="card-title">Pillar V: Core (Vehicle Layer)</h3>
-          <p class="card-subtitle">Virtual Core (Digital Twin Autonomy)</p>
+          <h3 class="card-title">EVA Restock — Hyper-Local Wholesale Engine</h3>
+          <p class="card-subtitle">The supply intelligence layer.</p>
           <ul>
-            <li>URDF robot models.</li>
-            <li>Perception, planning, and control stacks.</li>
-            <li>GPU‑accelerated simulation loops.</li>
+            <li>Connects to a network of wholesale-only distributors across the Houston metro.</li>
+            <li>Routes restock jobs based on price, distance, SLA, and availability.</li>
+            <li>Integrates with suppliers via API, EDI, email, or manual intake.</li>
+            <li>Ensures EVA Mart stays stocked — automatically.</li>
+            <li>Generates a second revenue stream through logistics margin.</li>
           </ul>
-          <p class="card-subtitle" style="margin-top:10px;">Physical Core (Automated Robots)</p>
-          <ul>
-            <li>Delivery robots, manipulators, and mobile bases.</li>
-            <li>Jetson‑powered autonomy.</li>
-          </ul>
-          <p class="tagline">Core = the robots that execute the work.</p>
+          <p class="tagline">Smarter sourcing. Faster restock. Better margins.</p>
         </div>
       </div>
 
       <div class="grid-2" style="margin-top:22px;">
         <div class="card">
-          <h3 class="card-title">Pillar A: Grid (Automation Layer)</h3>
-          <p class="card-subtitle">Virtual Grid (Isaac Sim ↔ Cloud)</p>
+          <h3 class="card-title">EVA DropShift — Last-Mile Gig Delivery Mesh</h3>
+          <p class="card-subtitle">The fulfillment fallback layer.</p>
           <ul>
-            <li>Cloud‑connected simulation.</li>
-            <li>Continuous optimization.</li>
-            <li>Digital twin lifecycle.</li>
+            <li>Gig drivers pick up wholesale orders and deliver directly to EVA Mart nodes.</li>
+            <li>Activates when distributor delivery is unavailable or too slow.</li>
+            <li>Guarantees 2–8 hour restock cycles across all deployed units.</li>
+            <li>Generates a third revenue stream through delivery margin.</li>
+            <li>Scales on demand using Houston's existing gig driver network.</li>
           </ul>
-          <p class="card-subtitle" style="margin-top:10px;">Physical Grid (Autonomous Network)</p>
-          <ul>
-            <li>Pods connected to cloud orchestration.</li>
-            <li>Real‑time monitoring and Metropolis‑aligned analytics.</li>
-            <li>Operator command + oversight.</li>
-          </ul>
-          <p class="tagline">Grid = the intelligence that connects everything.</p>
+          <p class="tagline">Always stocked. Always on. Zero dependence on a single supplier.</p>
         </div>
 
         <div class="card">
-          <h3 class="card-title">From simulation to deployment</h3>
-          <p class="card-subtitle">
-            EVA is built to compress the path from virtual design to physical operations.
-          </p>
+          <h3 class="card-title">EVA Cloud — Orchestration + Routing Layer</h3>
+          <p class="card-subtitle">The intelligence that connects everything.</p>
           <ul>
-            <li>Design Pods, robots, and workflows as digital twins first.</li>
-            <li>Validate autonomy and operations in Isaac Sim.</li>
-            <li>Deploy Jetson‑powered robots into EVA Pods with EVA Grid orchestration.</li>
-            <li>Continuously optimize using real‑time data and cloud analytics.</li>
+            <li>Manages inventory, restock logic, and the supplier graph in real time.</li>
+            <li>Routes DropShift jobs and enforces SLAs across all nodes.</li>
+            <li>Provides dashboards for property managers and EVA operators.</li>
+            <li>Runs the autonomy logic for future EVA ADV vehicles.</li>
+            <li>Foundation for scaling the network beyond the Houston metro.</li>
           </ul>
-          <p class="tagline">
-            Virtual → Physical. Simulation → Deployment. Robots → Businesses.
-          </p>
+          <p class="tagline">One cloud. Every node. Full visibility.</p>
         </div>
       </div>
     </section>
 
-    <!-- EVA Pods as infrastructure -->
-    <section id="pods">
-      <div class="section-kicker">Infrastructure</div>
-      <h2 class="section-title">EVA Pods as micro‑fulfillment infrastructure</h2>
+    <!-- EVA Mart Detail -->
+    <section id="evamart">
+      <div class="section-kicker">Wedge Product</div>
+      <h2 class="section-title">EVA Mart — Where tenants actually shop.</h2>
       <p class="section-lead">
-        EVA Pods are modular, simulation‑validated micro‑fulfillment units that can be
-        dropped into residential neighborhoods, campuses, or commercial sites to create
-        autonomous retail and logistics nodes.
+        A fully autonomous retail unit installed on-site. No cashiers, no operating hours, no staffing overhead. Just product, priced at wholesale, available around the clock.
       </p>
 
       <div class="pods-layout">
         <div class="card">
-          <h3 class="card-title">What EVA Pods are</h3>
+          <h3 class="card-title">Why EVA Mart wins at the property level</h3>
           <ul>
-            <li>Autonomous retail units.</li>
-            <li>Hyper‑local micro‑fulfillment nodes.</li>
-            <li>Simulation‑validated before deployment.</li>
-            <li>Modular, repeatable, and robot‑native.</li>
-            <li>Deployable almost anywhere.</li>
+            <li>Zero staffing cost — completely autonomous operation from day one.</li>
+            <li>Wholesale sourcing means prices beat 7-Eleven, CVS, and DoorDash every time.</li>
+            <li>No delivery fees, no wait time, no minimum order.</li>
+            <li>Property managers earn passive revenue on every transaction.</li>
+            <li>Increases tenant satisfaction and drives lease renewal rates.</li>
+            <li>SKU catalog tuned to each property's usage patterns over time.</li>
           </ul>
-          <p class="tagline">
-            EVA Pods turn any location into a fully autonomous micro‑fulfillment business.
-          </p>
+          <p class="tagline">A new amenity category: autonomous retail micro-infrastructure.</p>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+            <span class="pods-badge">Dry goods</span>
+            <span class="pods-badge">Cleaning supplies</span>
+            <span class="pods-badge">Paper goods</span>
+            <span class="pods-badge">Snacks</span>
+            <span class="pods-badge">Tenant essentials</span>
+          </div>
         </div>
 
-        <aside class="pods-visual" aria-label="EVAMart pod concept">
-          <div class="pods-visual-title">Concept sketch</div>
-          <div class="pods-visual-main">Drive‑through EVAMart Pod</div>
-          <img src="eva_slide1.png" alt="Drive-through EVAMart Pod concept" style="width: 100%; height: auto; border-radius: 12px; margin-bottom: 16px; margin-top: 8px; box-shadow: 0 0 20px rgba(53, 226, 138, 0.2);">
+        <aside class="pods-visual" aria-label="EVA Mart deployment concept">
+          <div class="pods-visual-title">Phase 0 Deployment</div>
+          <div class="pods-visual-main">EVA Mart on Taylor-Dunn Platform</div>
+          <img src="eva_slide1.png" alt="EVA Mart deployment concept" style="width:100%;height:auto;border-radius:12px;margin-bottom:16px;margin-top:8px;box-shadow:0 0 20px rgba(53,226,138,0.2);">
           <div class="pods-visual-sub">
-            A compact, modular EVAMart Pod with a drive‑through lane embedded in a
-            residential neighborhood—built for robots first, humans second.
-          </div>
-          <div class="pods-badge-row">
-            <span class="pods-badge">Hyper‑local</span>
-            <span class="pods-badge">Robot‑native interior</span>
-            <span class="pods-badge">Neighborhood‑scale footprint</span>
+            EVA Mart launches on an industrial Taylor-Dunn vehicle platform — mobile, deployable inside properties, and designed to validate every layer of the EVA stack before the full ADV launch.
           </div>
           <div class="pods-drive-strip">
             <span class="pods-drive-dot"></span>
-            <span>
-              Customer drives up → robots fulfill order → EVAMart hands off in under
-              two minutes.
-            </span>
+            <span>Tenant walks up → taps to purchase → EVA Mart dispenses. No app. No staff. No wait.</span>
           </div>
         </aside>
       </div>
     </section>
 
-    <!-- EVAMart workflow -->
-    <section id="workflow">
-      <div class="section-kicker">Experience</div>
-      <h2 class="section-title">EVAMart micro‑fulfillment workflow</h2>
+    <!-- Phase 0 Pilot -->
+    <section id="pilot">
+      <div class="section-kicker">Phase 0</div>
+      <h2 class="section-title">Taylor-Dunn Pilot — The bridge to full autonomy.</h2>
       <p class="section-lead">
-        A tightly orchestrated flow from app to trunk, powered by digital twins,
-        arm‑controller robots, and humanoid handoff.
+        Before EVA builds its own Autonomous Delivery Vehicle, it validates every assumption on a proven industrial platform. Phase 0 is about data, not hardware.
       </p>
 
       <div class="workflow-steps">
         <div class="step-card">
-          <div class="step-index">Step 1</div>
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 8px; opacity: 0.7;">
-            <rect x="6" y="8" width="20" height="14" rx="2" stroke="#35e28a" stroke-width="2"/>
-            <path d="M 14 16 L 18 20 L 24 12" stroke="#35e28a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <div class="step-index">Validate 1</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;opacity:0.7;">
+            <circle cx="16" cy="12" r="6" stroke="#35e28a" stroke-width="2"/>
+            <path d="M8 26c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#35e28a" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <div class="step-title">Customer places order on app</div>
-          <p class="step-desc">
-            A mobile‑first experience where customers browse inventory, check live
-            availability, and confirm pickup ETA.
-          </p>
+          <div class="step-title">Tenant Adoption</div>
+          <p class="step-desc">Measure purchase frequency, repeat rate, and engagement at the unit level.</p>
         </div>
         <div class="step-card">
-          <div class="step-index">Step 2</div>
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 8px; opacity: 0.7;">
-            <path d="M 7 12 L 11 8 L 15 12 L 13 14 C 12 18 10 20 8 22" stroke="#4fb3ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="25" cy="12" r="6" stroke="#4fb3ff" stroke-width="2"/>
-            <line x1="22" y1="12" x2="28" y2="12" stroke="#4fb3ff" stroke-width="2"/>
+          <div class="step-index">Validate 2</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;opacity:0.7;">
+            <rect x="6" y="6" width="20" height="20" rx="2" stroke="#4fb3ff" stroke-width="2"/>
+            <line x1="10" y1="16" x2="22" y2="16" stroke="#4fb3ff" stroke-width="2"/>
+            <line x1="16" y1="10" x2="16" y2="22" stroke="#4fb3ff" stroke-width="2"/>
           </svg>
-          <div class="step-title">Drive to EVAMart Pod</div>
-          <p class="step-desc">
-            Customer navigates to the nearest EVAMart micro‑fulfillment Pod and enters
-            the drive‑through lane.
-          </p>
+          <div class="step-title">SKU Velocity</div>
+          <p class="step-desc">Identify top-performing SKUs by property type and purchase pattern.</p>
         </div>
         <div class="step-card">
-          <div class="step-index">Step 3</div>
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 8px; opacity: 0.7;">
-            <circle cx="12" cy="14" r="4" stroke="#e84aff" stroke-width="2"/>
-            <line x1="12" y1="10" x2="12" y2="18" stroke="#e84aff" stroke-width="2"/>
-            <line x1="8" y1="14" x2="16" y2="14" stroke="#e84aff" stroke-width="2"/>
-            <rect x="20" y="8" width="8" height="12" rx="1" stroke="#e84aff" stroke-width="2"/>
-            <circle cx="24" cy="14" r="1.5" fill="#e84aff"/>
+          <div class="step-index">Validate 3</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;opacity:0.7;">
+            <circle cx="16" cy="16" r="9" stroke="#e84aff" stroke-width="2"/>
+            <path d="M16 10v6l4 2" stroke="#e84aff" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <div class="step-title">Robots prepare the order</div>
-          <p class="step-desc">
-            Arm‑controller robots pick and stage items; humanoid robots receive the tote
-            and move to the vehicle.
-          </p>
+          <div class="step-title">Restock Cycles</div>
+          <p class="step-desc">Confirm that 2–8 hour restock windows are achievable using DropShift and local suppliers.</p>
         </div>
         <div class="step-card">
-          <div class="step-index">Step 4</div>
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 8px; opacity: 0.7;">
-            <path d="M 6 16 Q 10 12 14 16 Q 18 20 22 16" stroke="#ffb347" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <circle cx="12" cy="22" r="3" stroke="#ffb347" stroke-width="2"/>
-            <circle cx="20" cy="22" r="3" stroke="#ffb347" stroke-width="2"/>
-            <rect x="14" y="20" width="4" height="6" stroke="#ffb347" stroke-width="1.5" fill="#ffb347" opacity="0.2"/>
+          <div class="step-index">Validate 4</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;opacity:0.7;">
+            <path d="M6 16h20M16 6l10 10-10 10" stroke="#ffb347" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <div class="step-title">Handoff to the car</div>
-          <p class="step-desc">
-            Humanoid robots place the order in the trunk or hand it through the window,
-            completing the flow in under two minutes.
-          </p>
+          <div class="step-title">Wholesale Sourcing</div>
+          <p class="step-desc">Stress-test the EVA Restock supplier graph across Houston metro distributors.</p>
         </div>
         <div class="step-card">
-          <div class="step-index">Step 5</div>
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 8px; opacity: 0.7;">
-            <circle cx="16" cy="16" r="8" stroke="#35e28a" stroke-width="2" fill="none"/>
-            <circle cx="16" cy="16" r="5" stroke="#35e28a" stroke-width="1.5" fill="none" opacity="0.6"/>
-            <circle cx="16" cy="16" r="2" fill="#35e28a"/>
-            <path d="M 16 16 L 22 10" stroke="#35e28a" stroke-width="1.5"/>
+          <div class="step-index">Validate 5</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;opacity:0.7;">
+            <circle cx="16" cy="16" r="9" stroke="#35e28a" stroke-width="2"/>
+            <path d="M12 16l3 3 5-5" stroke="#35e28a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <div class="step-title">Continuous optimization</div>
-          <p class="step-desc">
-            EVA Grid captures telemetry, updates digital twins, and tunes workflows for
-            throughput, safety, and customer experience.
-          </p>
+          <div class="step-title">DropShift Fallback</div>
+          <p class="step-desc">Verify gig driver availability, reliability, and unit economics across the delivery mesh.</p>
+        </div>
+      </div>
+
+      <div class="duo-footer" style="margin-top:20px;">
+        <strong>Phase 0 → EVA ADV:</strong>&nbsp;
+        Everything proven on the Taylor-Dunn platform becomes the operational blueprint for EVA's Autonomous Delivery Vehicle.
+        <br/>
+        <span>The pilot is not a prototype — it's a live, revenue-generating proof of concept.</span>
+      </div>
+    </section>
+
+    <!-- Revenue Model -->
+    <section id="revenue">
+      <div class="section-kicker">Business Model</div>
+      <h2 class="section-title">Three revenue streams today. Four tomorrow.</h2>
+      <p class="section-lead">
+        EVA earns on every transaction across the stack — from the shelf to the supplier to the driver. No single point of failure. No dependency on one margin.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">Stream 1 — Retail Margin</h3>
+          <p class="card-subtitle">Source: EVA Mart</p>
+          <ul>
+            <li>EVA buys at wholesale and sells at a margin below convenience retail.</li>
+            <li>Tenants get a better price. EVA keeps the spread.</li>
+            <li>High-frequency, high-velocity purchases compound daily.</li>
+            <li>Scales linearly with every unit deployed.</li>
+          </ul>
+          <p class="tagline">Every SKU sold is a margin event.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Stream 2 — Logistics Margin</h3>
+          <p class="card-subtitle">Source: EVA Restock</p>
+          <ul>
+            <li>EVA routes restock jobs through its supplier network.</li>
+            <li>Earns a margin on every wholesale order routed and fulfilled.</li>
+            <li>Better routing equals lower cost equals higher margin over time.</li>
+            <li>Supplier network deepens with every EVA Mart deployed.</li>
+          </ul>
+          <p class="tagline">The supply chain is a product, not a cost center.</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:22px;">
+        <div class="card">
+          <h3 class="card-title">Stream 3 — Delivery Margin</h3>
+          <p class="card-subtitle">Source: EVA DropShift</p>
+          <ul>
+            <li>EVA pays gig drivers a fixed rate per delivery job.</li>
+            <li>Charges a delivery margin on top for last-mile fulfillment.</li>
+            <li>Activates on demand — zero salaried driver overhead.</li>
+            <li>Covers fallback and primary delivery across underserved routes.</li>
+          </ul>
+          <p class="tagline">Gig economics. Infrastructure margins.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Stream 4 — Autonomy Margin</h3>
+          <p class="card-subtitle">Source: EVA ADV (Future)</p>
+          <ul>
+            <li>As EVA ADV replaces gig drivers on high-density routes, delivery cost approaches zero.</li>
+            <li>Full autonomy margin is captured on every delivery run.</li>
+            <li>EVA Cloud handles routing, SLA enforcement, and vehicle dispatch.</li>
+            <li>Phase 0 operational data is the foundation for ADV deployment.</li>
+          </ul>
+          <p class="tagline">The same network. Zero marginal delivery cost.</p>
         </div>
       </div>
     </section>
 
-    <!-- Leadership -->
+    <!-- Why EVA Wins -->
+    <section id="why">
+      <div class="section-kicker">Market Position</div>
+      <h2 class="section-title">Why EVA wins. Why now.</h2>
+      <p class="section-lead">
+        EVA doesn't compete with DoorDash, Instacart, or convenience stores. It creates a category they can't reach: autonomous retail micro-infrastructure embedded at the property level.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">Wholesale beats everyone on price</h3>
+          <ul>
+            <li>DoorDash, Instacart, and Favor add 25–40% in fees on top of inflated retail prices.</li>
+            <li>7-Eleven and CVS mark up 40–60% over their own wholesale cost.</li>
+            <li>EVA sources at wholesale and passes savings while keeping its spread.</li>
+            <li>Tenants pay less. EVA earns more. No platform takes a cut.</li>
+          </ul>
+          <p class="tagline">Lower price. Better margin. No middleman.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Hyper-local sourcing is a moat</h3>
+          <ul>
+            <li>National wholesalers are built for restaurants, not autonomous retail nodes.</li>
+            <li>EVA's Houston metro supplier network is faster, cheaper, and more flexible.</li>
+            <li>Distributor relationships compound — stronger with every unit deployed.</li>
+            <li>Local supply chains are defensible. National players can't replicate them quickly.</li>
+          </ul>
+          <p class="tagline">The Houston metro is the moat. EVA builds it first.</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:22px;">
+        <div class="card">
+          <h3 class="card-title">Tenants want convenience without the tax</h3>
+          <ul>
+            <li>Delivery fee fatigue is real — people are cutting aggregator apps.</li>
+            <li>EVA Mart is in the building, not across town with a 45-minute ETA.</li>
+            <li>No app required. No tipping. No surge pricing. No minimum order.</li>
+            <li>Available at 2am. Priced better than the corner store.</li>
+          </ul>
+          <p class="tagline">The best delivery is the one that's already there.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">A new category. No direct competitor.</h3>
+          <ul>
+            <li>Micro-market kiosks don't do autonomous restocking or hyper-local sourcing.</li>
+            <li>Smart vending doesn't have a wholesale supply engine or gig delivery mesh.</li>
+            <li>Delivery apps don't build physical retail infrastructure at the property level.</li>
+            <li>EVA is the first to stack all four layers into one operating system.</li>
+          </ul>
+          <p class="tagline">EVA isn't competing for market share. It's creating the market.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
     <section id="team">
       <div class="section-kicker">Team</div>
-      <h2 class="section-title">Dual‑technical leadership</h2>
+      <h2 class="section-title">Built by operators who ship.</h2>
       <p class="section-lead">
-        EVA is led by founders who bridge architecture and execution, simulation and
-        deployment, virtual and physical.
+        EVA is led by founders who combine systems architecture with operational execution — the rare pairing required to build hardware, software, and logistics simultaneously.
       </p>
 
       <div class="leaders-grid">
         <div class="card leader-card">
           <div class="leader-name">Thomas J. Fanara</div>
-          <div class="leader-title">CEO / CTO (Architecture &amp; Vision)</div>
+          <div class="leader-title">CEO — Platform Architecture &amp; Vision</div>
           <ul>
-            <li>Systems architect specializing in simulation‑first robotics.</li>
-            <li>Creator of the EVA Pods/Core/Grid architecture.</li>
-            <li>
-              Expertise in USD digital twins, Isaac Sim workflows, and robot‑native
-              environments.
-            </li>
-            <li>Leads platform vision, autonomy strategy, and technical roadmap.</li>
+            <li>Architect of the EVA platform, business model, and go-to-market strategy.</li>
+            <li>Designed the EVA Mart, Restock, DropShift, and Cloud stack from the ground up.</li>
+            <li>Background in systems design, supply chain automation, and autonomous retail.</li>
+            <li>Leads product vision, investor relations, and platform roadmap.</li>
           </ul>
         </div>
 
         <div class="card leader-card">
           <div class="leader-name">Yves Koulidiati</div>
-          <div class="leader-title">COO / CTO (Systems &amp; Execution)</div>
+          <div class="leader-title">COO — Operations &amp; Systems Execution</div>
           <ul>
-            <li>
-              Robotics systems engineer with deep experience in deployment and
-              operations.
-            </li>
-            <li>Oversees physical Pods, robot integration, and field reliability.</li>
-            <li>Expert in Jetson‑powered autonomy.</li>
-            <li>URDF modeling and micro‑fulfillment workflows.</li>
+            <li>Operations and systems engineer focused on deployment and field reliability.</li>
+            <li>Oversees Phase 0 pilot deployment, supplier network buildout, and field execution.</li>
+            <li>Expert in logistics optimization and last-mile operations.</li>
+            <li>Leads Houston metro go-to-market and property manager relationships.</li>
           </ul>
         </div>
       </div>
 
       <div class="duo-footer">
-        <strong>Dual‑technical Leadership:</strong>
-        &nbsp;Architecture + Execution · Simulation + Deployment · Virtual + Physical.
-        <br />
-        <span>Together, the founders unify the E‑V‑A pillars into a deployable, scalable micro‑fulfillment platform.</span>
+        <strong>Architecture meets execution.</strong>&nbsp;
+        One founder designs the system. The other deploys it. Both are operators first.
+        <br/>
+        <span>Together, they are building the operating system for autonomous retail micro-infrastructure.</span>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-kicker">Get In Touch</div>
+      <h2 class="section-title">Invest. Partner. Deploy.</h2>
+      <p class="section-lead">
+        EVA is raising a seed round and actively onboarding its first property manager partners in the Houston metro. If you are an investor, property manager, or wholesale distributor — reach out.
+      </p>
+
+      <div class="grid-2" style="margin-top:4px;">
+        <div class="card">
+          <h3 class="card-title">Investors</h3>
+          <p class="card-subtitle">Seed round open now.</p>
+          <ul>
+            <li>Request the full investor deck and financial model.</li>
+            <li>Review Phase 0 pilot data and unit economics.</li>
+            <li>Meet the founding team.</li>
+          </ul>
+          <div style="margin-top:16px;">
+            <button class="btn-primary" type="button" onclick="window.location.href='mailto:thomas@eva-systems.net?subject=Investor Deck Request'">Request Investor Deck</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Property Managers</h3>
+          <p class="card-subtitle">Houston metro — first cohort deploying now.</p>
+          <ul>
+            <li>Deploy EVA Mart inside your property at no upfront cost.</li>
+            <li>Earn passive revenue on every transaction.</li>
+            <li>Increase tenant satisfaction and retention.</li>
+          </ul>
+          <div style="margin-top:16px;">
+            <button class="btn-primary" type="button" onclick="window.location.href='mailto:thomas@eva-systems.net?subject=Property Partner Inquiry'">Partner With Us</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="duo-footer" style="margin-top:22px;text-align:center;">
+        <strong>Contact:</strong>&nbsp;
+        <a href="mailto:thomas@eva-systems.net" style="color:var(--accent-cool);">thomas@eva-systems.net</a>
+        &nbsp;·&nbsp;
+        <span>Houston, TX</span>
+        &nbsp;·&nbsp;
+        <span>eva-systems.net</span>
       </div>
     </section>
 
     <footer>
       <div>© <span id="year"></span> EVA Systems, LLC. All rights reserved.</div>
-      <div>
-        EVA Pods · Core · Grid — Simulation‑first, robot‑native micro‑fulfillment.
-      </div>
+      <div>EVA Mart · EVA Restock · EVA DropShift · EVA Cloud — Autonomous Retail Infrastructure.</div>
+      <div><a href="mailto:thomas@eva-systems.net">thomas@eva-systems.net</a> · Houston, TX</div>
     </footer>
   </main>
 
