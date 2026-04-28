@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EVA Systems, LLC – Pods. Core. Grid.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="EVA Systems, LLC – simulation-first, robot-native micro-fulfillment platform built on Pods, Core, and Grid." />
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-alt: #0b0e13;
+      --text: #f5f7fa;
+      --muted: #9aa0b5;
+      --accent: #35e28a;
+      --accent-soft: rgba(53, 226, 138, 0.12);
+      --accent-warm: #ffb347;
+      --accent-cool: #4fb3ff;
+      --accent-purple: #e84aff;
+      --accent-pink: #ff3d6f;
+      --border: #1b2230;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      --radius: 12px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 40px rgba(53, 226, 138, 0.15);
+      --max-width: 1120px;
+    }
+    
+    @keyframes float-up {
+      0% {
+        transform: translateY(8px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(53, 226, 138, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(53, 226, 138, 0.8);
+      }
+    }
+    
+    @keyframes slide-in-left {
+      0% {
+        transform: translateX(-20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slide-in-right {
+      0% {
+        transform: translateX(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: linear-gradient(135deg, #0a0d15 0%, #050608 40%, #0f0812 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(53, 226, 138, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(79, 179, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(232, 74, 255, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 20px 64px;
+    }
+
+    header {
+      padding: 12px 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 95px;
+      height: 95px;
+      border-radius: 26px;
+      box-shadow: 0 0 30px rgba(53, 226, 138, 0.6), 0 0 15px rgba(79, 179, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      animation: pulse-glow 3s ease-in-out infinite;
+      object-fit: contain;
+      object-position: center;
+      background: rgba(11, 14, 19, 0.5);
+      padding: 10px;
+      border: 1px solid rgba(53, 226, 138, 0.2);
+    }
+
+    .logo-icon:hover {
+      box-shadow: 0 0 40px rgba(53, 226, 138, 0.8), 0 0 20px rgba(79, 179, 255, 0.4);
+    }
+
+    .logo-text-main {
+      font-weight: 650;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-pill {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(7, 10, 18, 0.9);
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(53, 226, 138, 0.8);
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 32px;
+      padding: 40px 32px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.8) 0%, rgba(5, 6, 8, 0.6) 100%);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), var(--shadow-glow);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(79, 179, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    
+    .hero > div:first-child {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 600;
+      display: inline-block;
+      background: var(--accent-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(53, 226, 138, 0.3);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      font-weight: 680;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      animation: slide-in-left 0.8s ease-out;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 32rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border-radius: 999px;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(7, 10, 18, 0.9);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .tag:hover {
+      border-color: rgba(79, 179, 255, 0.4);
+      background: rgba(79, 179, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .tag--accent {
+      border-color: rgba(53, 226, 138, 0.5);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    
+    .tag--accent:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(53, 226, 138, 0.3);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      padding: 11px 24px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 550;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #35e28a 0%, #4fb3ff 100%);
+      color: #020305;
+      box-shadow: 0 8px 25px rgba(53, 226, 138, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(53, 226, 138, 0.6);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 10px 18px;
+      border: 1.5px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .btn-ghost:hover {
+      background: var(--accent-soft);
+      box-shadow: 0 0 20px rgba(53, 226, 138, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .hero-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .hero-right {
+      position: relative;
+      padding: 20px 20px 24px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.6) 0%, rgba(11, 14, 19, 0.8) 100%);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: inset 0 0 40px rgba(53, 226, 138, 0.05);
+    }
+    
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        linear-gradient(135deg, transparent 0%, rgba(79, 179, 255, 0.05) 50%),
+        linear-gradient(45deg, rgba(53, 226, 138, 0.05) 25%, transparent 25%);
+      pointer-events: none;
+    }
+
+    .hero-grid-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .eva-equation {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .eva-equation span {
+      color: var(--accent);
+    }
+
+    .pillars-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .pillar-card {
+      border-radius: 12px;
+      padding: 12px 12px 14px;
+      background: linear-gradient(135deg, rgba(53, 226, 138, 0.08) 0%, rgba(79, 179, 255, 0.08) 100%);
+      border: 1.5px solid var(--border);
+      font-size: 0.85rem;
+      position: relative;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .pillar-card:nth-child(1) {
+      border-color: rgba(53, 226, 138, 0.4);
+    }
+    
+    .pillar-card:nth-child(2) {
+      border-color: rgba(79, 179, 255, 0.4);
+    }
+    
+    .pillar-card:nth-child(3) {
+      border-color: rgba(232, 74, 255, 0.4);
+    }
+    
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-color: transparent;
+    }
+
+    .pillar-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .pillar-name {
+      font-size: 0.9rem;
+      font-weight: 560;
+      margin-bottom: 4px;
+    }
+
+    .pillar-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .hero-bottom-text {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .hero-bottom-text span {
+      color: var(--accent);
+    }
+
+    section {
+      margin-bottom: 48px;
+      padding: 32px 24px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(25, 35, 60, 0.3) 0%, rgba(5, 6, 8, 0.1) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    section:nth-child(2n) {
+      background: linear-gradient(135deg, rgba(44, 28, 70, 0.2) 0%, rgba(5, 6, 8, 0.1) 100%);
+    }
+    
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.1;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-weight: 600;
+      display: inline-block;
+      background: var(--accent-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(53, 226, 138, 0.3);
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 620;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-lead {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 40rem;
+      margin-bottom: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr);
+      gap: 22px;
+    }
+
+    .card {
+      border-radius: 16px;
+      padding: 20px 22px 24px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.4) 0%, rgba(11, 14, 19, 0.6) 100%);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(79, 179, 255, 0.03);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(53, 226, 138, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .card:hover {
+      border-color: rgba(53, 226, 138, 0.2);
+      box-shadow: 0 12px 48px rgba(53, 226, 138, 0.15), inset 0 0 20px rgba(79, 179, 255, 0.05);
+    }
+    
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
+      box-shadow: 0 0 10px rgba(53, 226, 138, 0.5);
+    }
+
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+
+    .card li {
+      margin-bottom: 8px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .card li::before {
+      content: "";
+      margin-top: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
+      flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(53, 226, 138, 0.6);
+    }
+
+    .tagline {
+      font-size: 0.86rem;
+      color: var(--accent);
+      margin-top: 12px;
+      font-weight: 500;
+      padding: 8px 12px;
+      background: var(--accent-soft);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+    }
+
+    /* EVA Pods section */
+
+    .pods-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .pods-visual {
+      border-radius: 18px;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.6) 0%, rgba(11, 14, 19, 0.8) 100%);
+      border: 1.5px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      box-shadow: 0 0 40px rgba(79, 179, 255, 0.1);
+    }
+    
+    .pods-visual::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(79, 179, 255, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float-up 4s ease-in-out infinite;
+    }
+    
+    .pods-visual::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(53, 226, 138, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .pods-visual-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .pods-visual-main {
+      font-size: 1rem;
+      font-weight: 580;
+      margin-bottom: 6px;
+    }
+
+    .pods-visual-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .pods-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .pods-badge {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border-radius: 999px;
+      padding: 6px 11px;
+      border: 1px solid rgba(53, 226, 138, 0.5);
+      color: var(--accent);
+      background: var(--accent-soft);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .pods-badge:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(53, 226, 138, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .pods-drive-strip {
+      margin-top: 10px;
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, rgba(53, 226, 138, 0.12), rgba(79, 179, 255, 0.08));
+      font-size: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .pods-drive-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(53, 226, 138, 0.8);
+      flex-shrink: 0;
+    }
+
+    /* Workflow */
+
+    .workflow-steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      position: relative;
+    }
+    
+    .workflow-steps::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%);
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .step-card {
+      border-radius: 14px;
+      padding: 16px 14px 18px;
+      background: linear-gradient(135deg, rgba(53, 226, 138, 0.06) 0%, rgba(79, 179, 255, 0.04) 100%);
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      position: relative;
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+    
+    .step-card:hover {
+      border-color: rgba(53, 226, 138, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(53, 226, 138, 0.2);
+    }
+
+    .step-index {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text);
+      margin-bottom: 8px;
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+      color: #020305;
+    }
+
+    .step-title {
+      font-weight: 560;
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Leadership */
+
+    .leaders-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 20px;
+    }
+
+    .leader-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .leader-name::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 16px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
+      border-radius: 999px;
+    }
+
+    .leader-title {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .leader-card ul {
+      font-size: 0.86rem;
+    }
+    
+    .leader-card {
+      position: relative;
+    }
+    
+    .leader-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .duo-footer {
+      margin-top: 20px;
+      border-radius: 16px;
+      padding: 16px 18px;
+      border: 1.5px solid rgba(53, 226, 138, 0.3);
+      background: linear-gradient(135deg, rgba(53, 226, 138, 0.08) 0%, rgba(79, 179, 255, 0.05) 100%);
+      font-size: 0.85rem;
+      color: var(--text);
+      box-shadow: inset 0 0 20px rgba(53, 226, 138, 0.05);
+    }
+
+    .duo-footer strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .duo-footer span {
+      color: var(--accent-cool);
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.2) 0%, transparent 100%);
+      border-radius: 16px;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    footer a:hover {
+      color: var(--accent-cool);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 32px 24px;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .grid-2,
+      .pods-layout,
+      .leaders-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      
+      .workflow-steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      
+      .workflow-steps::before {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding-inline: 12px;
+        padding-bottom: 48px;
+      }
+
+      section {
+        padding: 20px 16px;
+      }
+
+      .hero {
+        padding: 20px 16px;
+        gap: 24px;
+      }
+
+      .section-title {
+        font-size: 1.15rem;
+      }
+      
+      .hero-title {
+        font-size: clamp(1.6rem, 5vw, 2rem);
+      }
+
+      .workflow-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      
+      .pillars-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .nav-pill {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="logo-mark">
+        <img src="eva_logo.png" alt="EVA Systems Logo" class="logo-icon">
+        <div>
+          <div class="logo-text-main">EVA Systems</div>
+          <div class="logo-text-sub">Pods · Core · Grid</div>
+        </div>
+      </div>
+      <div class="nav-pill">
+        <span class="nav-dot"></span>
+        <span>Simulation‑first · Robot‑native</span>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div>
+        <div class="hero-kicker">The solution</div>
+        <h1 class="hero-title">
+          Turning <span>any location</span> into an autonomous micro‑fulfillment business.
+        </h1>
+        <p class="hero-subtitle">
+          EVA Systems, LLC is a simulation‑first, robot‑native platform that unifies
+          <strong>Environment</strong>, <strong>Vehicle</strong>, and <strong>Automation</strong>
+          into deployable micro‑fulfillment Pods.
+        </p>
+        <div class="hero-tags">
+          <span class="tag tag--accent">E + V + A architecture</span>
+          <span class="tag">USD digital twins</span>
+          <span class="tag">Isaac Sim workflows</span>
+          <span class="tag">Jetson‑powered robots</span>
+        </div>
+        <div class="hero-cta-row">
+          <button class="btn-primary" type="button">Request investor deck</button>
+          <button class="btn-ghost" type="button">Explore EVA pillars</button>
+        </div>
+        <p class="hero-meta">
+          Virtual → Physical · Simulation → Deployment · Robots → Businesses
+        </p>
+      </div>
+      <aside class="hero-right">
+        <div class="hero-grid-label">EVA architecture</div>
+        <div class="eva-equation">
+          <span>E</span> + V + A
+        </div>
+        <div class="pillars-row">
+          <div class="pillar-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom: 6px; opacity: 0.8;">
+              <circle cx="12" cy="12" r="10" stroke="#35e28a" stroke-width="2"/>
+              <circle cx="12" cy="12" r="6" fill="#35e28a" opacity="0.2"/>
+              <circle cx="12" cy="7" r="2" fill="#35e28a"/>
+            </svg>
+            <div class="pillar-label">Pillar E</div>
+            <div class="pillar-name">Pods</div>
+            <div class="pillar-desc">
+              USD digital twin environments → autonomous micro‑fulfillment Pods.
+            </div>
+          </div>
+          <div class="pillar-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom: 6px; opacity: 0.8;">
+              <rect x="3" y="6" width="18" height="12" rx="2" stroke="#4fb3ff" stroke-width="2"/>
+              <line x1="9" y1="6" x2="9" y2="18" stroke="#4fb3ff" stroke-width="1.5"/>
+              <line x1="15" y1="6" x2="15" y2="18" stroke="#4fb3ff" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="2" fill="#4fb3ff" opacity="0.6"/>
+            </svg>
+            <div class="pillar-label">Pillar V</div>
+            <div class="pillar-name">Core</div>
+            <div class="pillar-desc">
+              URDF digital twin robots → Jetson‑powered physical robots.
+            </div>
+          </div>
+          <div class="pillar-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom: 6px; opacity: 0.8;">
+              <circle cx="6" cy="12" r="2.5" stroke="#e84aff" stroke-width="2"/>
+              <circle cx="18" cy="12" r="2.5" stroke="#e84aff" stroke-width="2"/>
+              <circle cx="12" cy="12" r="2.5" stroke="#e84aff" stroke-width="2" fill="#e84aff" opacity="0.3"/>
+              <line x1="8.5" y1="12" x2="10.5" y2="12" stroke="#e84aff" stroke-width="1.5"/>
+              <line x1="13.5" y1="12" x2="15.5" y2="12" stroke="#e84aff" stroke-width="1.5"/>
+            </svg>
+            <div class="pillar-label">Pillar A</div>
+            <div class="pillar-name">Grid</div>
+            <div class="pillar-desc">
+              Isaac Sim ↔ EVA Cloud orchestration → autonomous networks.
+            </div>
+          </div>
+        </div>
+        <p class="hero-bottom-text">
+          EVA is a three‑pillar robotics platform unifying
+          <span>Environment</span>, <span>Vehicle</span>, and <span>Automation</span>
+          into a single deployment‑ready stack.
+        </p>
+      </aside>
+    </section>
+
+    <!-- EVA pillars overview -->
+    <section id="pillars">
+      <div class="section-kicker">Architecture</div>
+      <h2 class="section-title">EVA = Environment + Vehicle + Automation</h2>
+      <p class="section-lead">
+        EVA is a three‑pillar robotics platform that starts in simulation and ends in
+        fully autonomous micro‑fulfillment businesses.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">Pillar E: Pods (Environment Layer)</h3>
+          <p class="card-subtitle">Virtual Pod (USD World)</p>
+          <ul>
+            <li>Full digital twin micro‑environment.</li>
+            <li>Modeled in USD and simulated in Isaac Sim.</li>
+            <li>Workflow validation before deployment.</li>
+          </ul>
+          <p class="card-subtitle" style="margin-top:10px;">Physical Pod (Micro‑Fulfillment Business)</p>
+          <ul>
+            <li>EVAMart, EVAPharm, EVAStore concepts.</li>
+            <li>Autonomous, hyper‑local retail units.</li>
+            <li>Robot‑native interior; fixed, mobile, or self‑mobile.</li>
+          </ul>
+          <p class="tagline">Pods = the environment where autonomy lives.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Pillar V: Core (Vehicle Layer)</h3>
+          <p class="card-subtitle">Virtual Core (Digital Twin Autonomy)</p>
+          <ul>
+            <li>URDF robot models.</li>
+            <li>Perception, planning, and control stacks.</li>
+            <li>GPU‑accelerated simulation loops.</li>
+          </ul>
+          <p class="card-subtitle" style="margin-top:10px;">Physical Core (Automated Robots)</p>
+          <ul>
+            <li>Delivery robots, manipulators, and mobile bases.</li>
+            <li>Jetson‑powered autonomy.</li>
+          </ul>
+          <p class="tagline">Core = the robots that execute the work.</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:22px;">
+        <div class="card">
+          <h3 class="card-title">Pillar A: Grid (Automation Layer)</h3>
+          <p class="card-subtitle">Virtual Grid (Isaac Sim ↔ Cloud)</p>
+          <ul>
+            <li>Cloud‑connected simulation.</li>
+            <li>Continuous optimization.</li>
+            <li>Digital twin lifecycle.</li>
+          </ul>
+          <p class="card-subtitle" style="margin-top:10px;">Physical Grid (Autonomous Network)</p>
+          <ul>
+            <li>Pods connected to cloud orchestration.</li>
+            <li>Real‑time monitoring and Metropolis‑aligned analytics.</li>
+            <li>Operator command + oversight.</li>
+          </ul>
+          <p class="tagline">Grid = the intelligence that connects everything.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">From simulation to deployment</h3>
+          <p class="card-subtitle">
+            EVA is built to compress the path from virtual design to physical operations.
+          </p>
+          <ul>
+            <li>Design Pods, robots, and workflows as digital twins first.</li>
+            <li>Validate autonomy and operations in Isaac Sim.</li>
+            <li>Deploy Jetson‑powered robots into EVA Pods with EVA Grid orchestration.</li>
+            <li>Continuously optimize using real‑time data and cloud analytics.</li>
+          </ul>
+          <p class="tagline">
+            Virtual → Physical. Simulation → Deployment. Robots → Businesses.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVA Pods as infrastructure -->
+    <section id="pods">
+      <div class="section-kicker">Infrastructure</div>
+      <h2 class="section-title">EVA Pods as micro‑fulfillment infrastructure</h2>
+      <p class="section-lead">
+        EVA Pods are modular, simulation‑validated micro‑fulfillment units that can be
+        dropped into residential neighborhoods, campuses, or commercial sites to create
+        autonomous retail and logistics nodes.
+      </p>
+
+      <div class="pods-layout">
+        <div class="card">
+          <h3 class="card-title">What EVA Pods are</h3>
+          <ul>
+            <li>Autonomous retail units.</li>
+            <li>Hyper‑local micro‑fulfillment nodes.</li>
+            <li>Simulation‑validated before deployment.</li>
+            <li>Modular, repeatable, and robot‑native.</li>
+            <li>Deployable almost anywhere.</li>
+          </ul>
+          <p class="tagline">
+            EVA Pods turn any location into a fully autonomous micro‑fulfillment business.
+          </p>
+        </div>
+
+        <aside class="pods-visual" aria-label="EVAMart pod concept">
+          <div class="pods-visual-title">Concept sketch</div>
+          <div class="pods-visual-main">Drive‑through EVAMart Pod</div>
+          <img src="eva_slide1.png" alt="Drive-through EVAMart Pod concept" style="width: 100%; height: auto; border-radius: 12px; margin-bottom: 16px; margin-top: 8px; box-shadow: 0 0 20px rgba(53, 226, 138, 0.2);">
+          <div class="pods-visual-sub">
+            A compact, modular EVAMart Pod with a drive‑through lane embedded in a
+            residential neighborhood—built for robots first, humans second.
+          </div>
+          <div class="pods-badge-row">
+            <span class="pods-badge">Hyper‑local</span>
+            <span class="pods-badge">Robot‑native interior</span>
+            <span class="pods-badge">Neighborhood‑scale footprint</span>
+          </div>
+          <div class="pods-drive-strip">
+            <span class="pods-drive-dot"></span>
+            <span>
+              Customer drives up → robots fulfill order → EVAMart hands off in under
+              two minutes.
+            </span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- EVAMart workflow -->
+    <section id="workflow">
+      <div class="section-kicker">Experience</div>
+      <h2 class="section-title">EVAMart micro‑fulfillment workflow</h2>
+      <p class="section-lead">
+        A tightly orchestrated flow from app to trunk, powered by digital twins,
+        arm‑controller robots, and humanoid handoff.
+      </p>
+
+      <div class="workflow-steps">
+        <div class="step-card">
+          <div class="step-index">Step 1</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 8px; opacity: 0.7;">
+            <rect x="6" y="8" width="20" height="14" rx="2" stroke="#35e28a" stroke-width="2"/>
+            <path d="M 14 16 L 18 20 L 24 12" stroke="#35e28a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="step-title">Customer places order on app</div>
+          <p class="step-desc">
+            A mobile‑first experience where customers browse inventory, check live
+            availability, and confirm pickup ETA.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-index">Step 2</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 8px; opacity: 0.7;">
+            <path d="M 7 12 L 11 8 L 15 12 L 13 14 C 12 18 10 20 8 22" stroke="#4fb3ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="25" cy="12" r="6" stroke="#4fb3ff" stroke-width="2"/>
+            <line x1="22" y1="12" x2="28" y2="12" stroke="#4fb3ff" stroke-width="2"/>
+          </svg>
+          <div class="step-title">Drive to EVAMart Pod</div>
+          <p class="step-desc">
+            Customer navigates to the nearest EVAMart micro‑fulfillment Pod and enters
+            the drive‑through lane.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-index">Step 3</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 8px; opacity: 0.7;">
+            <circle cx="12" cy="14" r="4" stroke="#e84aff" stroke-width="2"/>
+            <line x1="12" y1="10" x2="12" y2="18" stroke="#e84aff" stroke-width="2"/>
+            <line x1="8" y1="14" x2="16" y2="14" stroke="#e84aff" stroke-width="2"/>
+            <rect x="20" y="8" width="8" height="12" rx="1" stroke="#e84aff" stroke-width="2"/>
+            <circle cx="24" cy="14" r="1.5" fill="#e84aff"/>
+          </svg>
+          <div class="step-title">Robots prepare the order</div>
+          <p class="step-desc">
+            Arm‑controller robots pick and stage items; humanoid robots receive the tote
+            and move to the vehicle.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-index">Step 4</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 8px; opacity: 0.7;">
+            <path d="M 6 16 Q 10 12 14 16 Q 18 20 22 16" stroke="#ffb347" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <circle cx="12" cy="22" r="3" stroke="#ffb347" stroke-width="2"/>
+            <circle cx="20" cy="22" r="3" stroke="#ffb347" stroke-width="2"/>
+            <rect x="14" y="20" width="4" height="6" stroke="#ffb347" stroke-width="1.5" fill="#ffb347" opacity="0.2"/>
+          </svg>
+          <div class="step-title">Handoff to the car</div>
+          <p class="step-desc">
+            Humanoid robots place the order in the trunk or hand it through the window,
+            completing the flow in under two minutes.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-index">Step 5</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 8px; opacity: 0.7;">
+            <circle cx="16" cy="16" r="8" stroke="#35e28a" stroke-width="2" fill="none"/>
+            <circle cx="16" cy="16" r="5" stroke="#35e28a" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <circle cx="16" cy="16" r="2" fill="#35e28a"/>
+            <path d="M 16 16 L 22 10" stroke="#35e28a" stroke-width="1.5"/>
+          </svg>
+          <div class="step-title">Continuous optimization</div>
+          <p class="step-desc">
+            EVA Grid captures telemetry, updates digital twins, and tunes workflows for
+            throughput, safety, and customer experience.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership -->
+    <section id="team">
+      <div class="section-kicker">Team</div>
+      <h2 class="section-title">Dual‑technical leadership</h2>
+      <p class="section-lead">
+        EVA is led by founders who bridge architecture and execution, simulation and
+        deployment, virtual and physical.
+      </p>
+
+      <div class="leaders-grid">
+        <div class="card leader-card">
+          <div class="leader-name">Thomas J. Fanara</div>
+          <div class="leader-title">CEO / CTO (Architecture &amp; Vision)</div>
+          <ul>
+            <li>Systems architect specializing in simulation‑first robotics.</li>
+            <li>Creator of the EVA Pods/Core/Grid architecture.</li>
+            <li>
+              Expertise in USD digital twins, Isaac Sim workflows, and robot‑native
+              environments.
+            </li>
+            <li>Leads platform vision, autonomy strategy, and technical roadmap.</li>
+          </ul>
+        </div>
+
+        <div class="card leader-card">
+          <div class="leader-name">Yves Koulidiati</div>
+          <div class="leader-title">COO / CTO (Systems &amp; Execution)</div>
+          <ul>
+            <li>
+              Robotics systems engineer with deep experience in deployment and
+              operations.
+            </li>
+            <li>Oversees physical Pods, robot integration, and field reliability.</li>
+            <li>Expert in Jetson‑powered autonomy.</li>
+            <li>URDF modeling and micro‑fulfillment workflows.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="duo-footer">
+        <strong>Dual‑technical Leadership:</strong>
+        &nbsp;Architecture + Execution · Simulation + Deployment · Virtual + Physical.
+        <br />
+        <span>Together, the founders unify the E‑V‑A pillars into a deployable, scalable micro‑fulfillment platform.</span>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> EVA Systems, LLC. All rights reserved.</div>
+      <div>
+        EVA Pods · Core · Grid — Simulation‑first, robot‑native micro‑fulfillment.
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
