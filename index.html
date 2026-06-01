@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>EVA Systems — Autonomous Retail Infrastructure</title>
+  <title>EVA Systems — Urgent-Need Fulfillment Infrastructure</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="EVA Systems deploys autonomous retail nodes inside multifamily and commercial properties — stocked by hyper-local wholesale suppliers, fulfilled by gig drivers, orchestrated by EVA Cloud." />
+  <meta name="description" content="EVA is a neighborhood micro-store that gives people instant access to essentials — cheaper than convenience stores, with no delivery fees. Deploying in Houston, TX." />
   <style>
     :root {
       --bg: #050608;
@@ -763,6 +763,182 @@
 
     footer a:hover { color: var(--accent-cool); }
 
+    /* ── New section styles ── */
+
+    .eva-statement {
+      font-size: 1.35rem;
+      line-height: 1.6;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 14px 0 20px;
+      font-weight: 400;
+    }
+
+    /* How EVA Works */
+    .how-steps {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-top: 28px;
+    }
+
+    .how-step {
+      flex: 1;
+      border-radius: 20px;
+      padding: 28px 22px;
+      background: linear-gradient(135deg, rgba(24,32,51,0.6) 0%, rgba(11,14,19,0.8) 100%);
+      border: 1.5px solid var(--border);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .how-step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(53,226,138,0.15);
+    }
+
+    .how-step:nth-child(1) { border-color: rgba(255,61,111,0.35); }
+    .how-step:nth-child(3) { border-color: rgba(79,179,255,0.35); }
+    .how-step:nth-child(5) { border-color: rgba(53,226,138,0.4); }
+
+    .how-step-num {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-cool));
+      color: #020305;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+      box-shadow: 0 0 16px rgba(53,226,138,0.4);
+    }
+
+    .how-step-icon {
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      opacity: 0.85;
+    }
+
+    .how-step-title {
+      font-size: 0.95rem;
+      font-weight: 620;
+      margin-bottom: 8px;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .how-step-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .how-step-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      flex-shrink: 0;
+      opacity: 0.4;
+    }
+
+    /* Why Now grid */
+    .why-now-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .why-now-item {
+      border-radius: 14px;
+      padding: 18px 18px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(24,32,51,0.4) 0%, rgba(5,6,8,0.3) 100%);
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.5;
+      transition: all 0.3s ease;
+    }
+
+    .why-now-item:hover {
+      border-color: rgba(53,226,138,0.2);
+      transform: translateY(-2px);
+    }
+
+    .why-now-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    /* Status list */
+    .status-list {
+      list-style: none;
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .status-item:hover { transform: translateX(4px); }
+
+    .status-item.done {
+      background: rgba(53,226,138,0.08);
+      border: 1px solid rgba(53,226,138,0.25);
+    }
+
+    .status-item.progress {
+      background: rgba(79,179,255,0.07);
+      border: 1px solid rgba(79,179,255,0.2);
+    }
+
+    .status-check {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .status-item.done .status-check {
+      background: rgba(53,226,138,0.2);
+      color: var(--accent);
+      box-shadow: 0 0 10px rgba(53,226,138,0.25);
+    }
+
+    .status-item.progress .status-check {
+      background: rgba(79,179,255,0.15);
+      color: var(--accent-cool);
+    }
+
+    /* Founder quote */
+    .founder-quote {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text);
+      max-width: 540px;
+      margin-bottom: 22px;
+      padding: 18px 22px;
+      border-radius: 12px;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+    }
+
     /* Responsive */
 
     @media (max-width: 900px) {
@@ -778,6 +954,9 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
       .workflow-steps::before { display: none; }
+      .how-steps { flex-direction: column; gap: 10px; }
+      .how-step-arrow { display: none; }
+      .why-now-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
 
     @media (max-width: 640px) {
@@ -790,6 +969,10 @@
       .pillars-row-2 { grid-template-columns: minmax(0, 1fr); }
       header { flex-direction: column; gap: 12px; }
       .nav-pill { font-size: 0.7rem; }
+      .why-now-grid { grid-template-columns: minmax(0,1fr); }
+      .eva-statement { font-size: 1.05rem; }
+      .founder-quote { font-size: 0.95rem; }
+      .status-list { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -800,7 +983,7 @@
         <img src="eva_logo.png" alt="EVA Systems Logo" class="logo-icon">
         <div>
           <div class="logo-text-main">EVA Systems</div>
-          <div class="logo-text-sub">Autonomous Retail Infrastructure</div>
+          <div class="logo-text-sub">Urgent-Need Fulfillment Infrastructure</div>
         </div>
       </div>
       <div class="nav-pill">
@@ -812,25 +995,25 @@
     <!-- Hero -->
     <section class="hero" id="top">
       <div>
-        <div class="hero-kicker">Autonomous Retail Infrastructure</div>
+        <div class="hero-kicker">Urgent-Need Fulfillment Infrastructure</div>
         <h1 class="hero-title">
-          <span>EVA Mart.</span> The store that runs itself.
+          <span>Urgent-Need Fulfillment,</span> Without the Fees or the Wait
         </h1>
         <p class="hero-subtitle">
-          EVA Mart is an autonomous retail node deployed inside neighborhoods — giving residents wholesale-priced essentials without the supermarket trip, delivery fees, or wait. Stocked by EVA Restock, fulfilled by EVA DropShift, orchestrated by EVA Cloud. 24/7. No staff. No markup.
+          EVA is a network of autonomous retail nodes that deliver "need it now" essentials instantly and locally — at prices below convenience and grocery.
         </p>
         <div class="hero-tags">
-          <span class="tag tag--accent">EVA Mart</span>
-          <span class="tag">EVA Restock</span>
-          <span class="tag">EVA DropShift</span>
-          <span class="tag">EVA Cloud</span>
+          <span class="tag tag--accent">Instant Access</span>
+          <span class="tag">Local</span>
+          <span class="tag">No Delivery Fees</span>
+          <span class="tag">Below C-Store Prices</span>
         </div>
         <div class="hero-cta-row">
-          <button class="btn-primary" type="button" onclick="window.location.href='mailto:tom.fanara@eva-systems.net?subject=Investor Deck Request'">Request Investor Deck</button>
-          <button class="btn-ghost" type="button" onclick="document.getElementById('platform').scrollIntoView({behavior:'smooth'})">Explore the Platform</button>
+          <button class="btn-primary" type="button" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">See How EVA Works</button>
+          <button class="btn-ghost" type="button" onclick="document.getElementById('raising').scrollIntoView({behavior:'smooth'})">Investor Info</button>
         </div>
         <p class="hero-meta">
-          Retail Margin · Logistics Margin · Delivery Margin · Future Autonomy Margin
+          Instant · Local · Below Convenience Pricing · Zero Delivery Fees
         </p>
       </div>
       <aside class="hero-right">
@@ -846,7 +1029,7 @@
             </svg>
             <div class="pillar-label">Wedge Product</div>
             <div class="pillar-name">EVA Mart</div>
-            <div class="pillar-desc">Autonomous retail node. 24/7. No staff.</div>
+            <div class="pillar-desc">Instant access to urgent-need essentials. 24/7.</div>
           </div>
           <div class="pillar-card">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
@@ -858,7 +1041,7 @@
             </svg>
             <div class="pillar-label">Supply Engine</div>
             <div class="pillar-name">EVA Restock</div>
-            <div class="pillar-desc">Hyper-local wholesale sourcing mesh.</div>
+            <div class="pillar-desc">Keeps every node stocked for urgent demand.</div>
           </div>
           <div class="pillar-card">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
@@ -866,7 +1049,7 @@
             </svg>
             <div class="pillar-label">Last Mile</div>
             <div class="pillar-name">EVA DropShift</div>
-            <div class="pillar-desc">Gig delivery mesh. 2–8 hr cycles.</div>
+            <div class="pillar-desc">Rapid restock when demand spikes. 2–8 hr cycles.</div>
           </div>
           <div class="pillar-card">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
@@ -875,76 +1058,226 @@
             </svg>
             <div class="pillar-label">Orchestration</div>
             <div class="pillar-name">EVA Cloud</div>
-            <div class="pillar-desc">Inventory, routing, and SLA logic.</div>
+            <div class="pillar-desc">Routes every node, every order, in real time.</div>
           </div>
         </div>
         <p class="hero-bottom-text">
-          Four interlocking layers. One <span>autonomous retail network.</span>
+          Four interlocking layers. One <span>urgent-need fulfillment network.</span>
         </p>
       </aside>
+    </section>
+
+    <!-- What EVA Is -->
+    <section id="what-eva-is">
+      <div class="section-kicker">What EVA Is</div>
+      <h2 class="section-title">A neighborhood micro-store for everyday essentials.</h2>
+      <p class="eva-statement">
+        EVA is a neighborhood micro-store that gives people instant access to essentials — cheaper than convenience stores, with no delivery fees.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <span class="tag tag--accent">Instant access</span>
+        <span class="tag">Below C-store prices</span>
+        <span class="tag">No delivery fees</span>
+        <span class="tag">Right in your neighborhood</span>
+        <span class="tag">Open 24/7</span>
+      </div>
+    </section>
+
+    <!-- Why This Matters -->
+    <section id="why-matters">
+      <div class="section-kicker">Why This Matters</div>
+      <h2 class="section-title">When you run out, every option fails you.</h2>
+      <p class="section-lead">
+        When people run out of essentials — paper towels, cleaning supplies, snacks, medicine — there's no fast, affordable option. EVA fixes that.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">The moment everyone knows</h3>
+          <ul>
+            <li>You run out of paper towels at 9pm. The grocery store is 20 minutes away.</li>
+            <li>You check DoorDash — $4 delivery fee, $3 service fee, 45 minutes, and the items cost 30% more than in-store.</li>
+            <li>You drive to the nearest convenience store and pay $6 for something that costs $2 at Walmart.</li>
+            <li>There is no good option. EVA is that option.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="card-title">What EVA changes</h3>
+          <ul>
+            <li>EVA Mart is right in your neighborhood — walk up in minutes.</li>
+            <li>Priced below your local convenience store, always.</li>
+            <li>No fees. No minimum. No wait.</li>
+            <li>Available at 2am when nothing else is affordable or close.</li>
+          </ul>
+          <p class="tagline">The right option. Finally close enough.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How EVA Works -->
+    <section id="how-it-works">
+      <div class="section-kicker">How EVA Works</div>
+      <h2 class="section-title">Three steps. No fees. No wait.</h2>
+      <p class="section-lead">
+        EVA Mart removes every obstacle between you and the essentials you need.
+      </p>
+      <div class="how-steps">
+        <!-- Step 1 -->
+        <div class="how-step">
+          <div class="how-step-num">1</div>
+          <div class="how-step-icon">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="18" r="8" stroke="#ff3d6f" stroke-width="2.5"/>
+              <path d="M12 44c0-7.7 6.3-14 14-14s14 6.3 14 14" stroke="#ff3d6f" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="40" cy="12" r="6" fill="rgba(255,61,111,0.15)" stroke="#ff3d6f" stroke-width="2"/>
+              <path d="M37.5 12h5M40 9.5v5" stroke="#ff3d6f" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="how-step-title">You run out of essentials</div>
+          <div class="how-step-desc">Paper towels. Cleaning spray. Snacks. Medicine. It happens — and every option nearby is too slow or too expensive.</div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="how-step-arrow">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M6 14h16M16 8l6 6-6 6" stroke="#35e28a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="how-step">
+          <div class="how-step-num">2</div>
+          <div class="how-step-icon">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <rect x="10" y="26" width="32" height="18" rx="2" stroke="#4fb3ff" stroke-width="2.5"/>
+              <path d="M10 26l6-14h20l6 14" stroke="#4fb3ff" stroke-width="2.5" stroke-linejoin="round"/>
+              <line x1="10" y1="26" x2="42" y2="26" stroke="#4fb3ff" stroke-width="2"/>
+              <rect x="20" y="33" width="12" height="11" rx="1" stroke="#4fb3ff" stroke-width="2"/>
+              <circle cx="38" cy="10" r="7" stroke="#35e28a" stroke-width="2.5"/>
+              <circle cx="38" cy="10" r="2.5" fill="#35e28a"/>
+              <path d="M38 17v5" stroke="#35e28a" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="how-step-title">EVA Mart is 20 feet away</div>
+          <div class="how-step-desc">A self-contained micro-store placed right inside your neighborhood. Open around the clock, no staff required.</div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="how-step-arrow">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M6 14h16M16 8l6 6-6 6" stroke="#35e28a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="how-step">
+          <div class="how-step-num">3</div>
+          <div class="how-step-icon">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <path d="M18 22v-5a8 8 0 0116 0v5" stroke="#35e28a" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="10" y="22" width="32" height="24" rx="3" stroke="#35e28a" stroke-width="2.5"/>
+              <path d="M19 34l6 6 10-10" stroke="#35e28a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="how-step-title">Grab what you need — no fees, no wait</div>
+          <div class="how-step-desc">Walk up or pre-order on the app. Cheaper than the convenience store. Done in minutes. No delivery fee, no tip, no minimum.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem section -->
+    <section id="problem">
+      <div class="section-kicker">The Problem</div>
+      <h2 class="section-title">Urgent-Need Retail Doesn't Exist</h2>
+      <p class="section-lead">
+        When people need something right now, every option is either too slow, too expensive, or too far away.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">How people shop urgently today</h3>
+          <ul>
+            <li>Amazon's margins are competitive, but their average fulfillment time is 2.5 days — useless when you need it tonight.</li>
+            <li>Delivery apps add 25–40% in fees, tips, and inflated prices — then take 30–60 minutes.</li>
+            <li>C-stores are overpriced and limited — 40–60% markup over wholesale on a thin SKU set.</li>
+            <li>Supermarkets require a trip, parking, and 45 minutes out of your day.</li>
+          </ul>
+          <p class="tagline">When people need something right now, there's no fast, affordable option.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">The gap EVA fills</h3>
+          <ul>
+            <li>No infrastructure exists that is both instant and below convenience pricing.</li>
+            <li>The "urgent" buyer is forced to choose between speed and affordability.</li>
+            <li>No one has built local, autonomous retail at the neighborhood level.</li>
+            <li>Micro-markets and smart vending don't solve the price or supply problem.</li>
+          </ul>
+          <p class="tagline">EVA fills the urgent-need gap with instant, local access.</p>
+        </div>
+      </div>
     </section>
 
     <!-- The Platform -->
     <section id="platform">
       <div class="section-kicker">The Platform</div>
-      <h2 class="section-title">Four products. One network.</h2>
+      <h2 class="section-title">Four products. One urgent-need network.</h2>
       <p class="section-lead">
-        EVA is not a single product — it's a stacked infrastructure play. Each layer solves a real operational problem and generates its own revenue stream.
+        EVA is not a single product — it's a stacked infrastructure play. Each layer keeps essentials available and affordable when people need them most.
       </p>
 
       <div class="grid-2">
         <div class="card">
           <h3 class="card-title">EVA Mart — Autonomous Retail Node</h3>
-          <p class="card-subtitle">The wedge for adoption.</p>
+          <p class="card-subtitle">Instant access to essentials, where people already are.</p>
           <ul>
-            <li>Fully autonomous retail node deployed inside neighborhoods, apartment communities, and mixed-use properties.</li>
-            <li>Sells dry goods, essentials, paper goods, cleaning supplies, snacks, and everyday items.</li>
+            <li>A mobile, autonomous micro-store that sits inside neighborhoods — so when people run out, they can grab what they need in minutes.</li>
+            <li>Walk-up or drive-up access. No delivery fees. No minimum order. No wait.</li>
+            <li>Sells dry goods, essentials, paper goods, cleaning supplies, snacks, and everyday urgent-need items.</li>
+            <li>Priced below convenience retail — wholesale economics passed directly to residents.</li>
             <li>Operates 24/7 with zero staff.</li>
-            <li>Wholesale economics mean residents pay less than the supermarket — without the trip.</li>
-            <li>Designed for high-velocity, high-frequency repeat purchases.</li>
           </ul>
-          <p class="tagline">Skip the supermarket. Shop wholesale. Right in the neighborhood.</p>
+          <p class="tagline">Need it now? It's right there. Cheaper than anywhere else nearby.</p>
         </div>
 
         <div class="card">
           <h3 class="card-title">EVA Restock — Hyper-Local Wholesale Engine</h3>
-          <p class="card-subtitle">The supply intelligence layer.</p>
+          <p class="card-subtitle">Automates sourcing so essentials are always available.</p>
           <ul>
-            <li>Connects to a network of wholesale-only distributors across the Houston metro.</li>
+            <li>Connects to wholesale-only distributors across the Houston metro.</li>
             <li>Routes restock jobs based on price, distance, SLA, and availability.</li>
             <li>Integrates with suppliers via API, EDI, email, or manual intake.</li>
-            <li>Ensures EVA Mart stays stocked — automatically.</li>
+            <li>Ensures essentials are always available when people need them most.</li>
             <li>Generates a second revenue stream through logistics margin.</li>
           </ul>
-          <p class="tagline">Smarter sourcing. Faster restock. Better margins.</p>
+          <p class="tagline">Smarter sourcing. Faster restock. Essentials always ready.</p>
         </div>
       </div>
 
       <div class="grid-2" style="margin-top:22px;">
         <div class="card">
           <h3 class="card-title">EVA DropShift — Last-Mile Gig Delivery Mesh</h3>
-          <p class="card-subtitle">The fulfillment fallback layer.</p>
+          <p class="card-subtitle">Restocks nodes quickly when suppliers don't integrate directly.</p>
           <ul>
             <li>Gig drivers pick up wholesale orders and deliver directly to EVA Mart nodes.</li>
             <li>Activates when distributor delivery is unavailable or too slow.</li>
-            <li>Guarantees 2–8 hour restock cycles across all deployed units.</li>
+            <li>Guarantees 2–8 hour restock cycles so urgent-need demand is never unmet.</li>
             <li>Generates a third revenue stream through delivery margin.</li>
             <li>Scales on demand using Houston's existing gig driver network.</li>
           </ul>
-          <p class="tagline">Always stocked. Always on. Zero dependence on a single supplier.</p>
+          <p class="tagline">Always stocked. Always on. No single supplier dependency.</p>
         </div>
 
         <div class="card">
           <h3 class="card-title">EVA Cloud — Orchestration + Routing Layer</h3>
-          <p class="card-subtitle">The intelligence that connects everything.</p>
+          <p class="card-subtitle">Keeps every node stocked and ready for urgent-need demand.</p>
           <ul>
             <li>Manages inventory, restock logic, and the supplier graph in real time.</li>
-            <li>Routes DropShift jobs and enforces SLAs across all nodes.</li>
+            <li>Routes DropShift jobs and enforces SLAs so nodes never go empty.</li>
             <li>Provides dashboards for property managers and EVA operators.</li>
             <li>Runs the autonomy logic for future EVA ADV vehicles.</li>
-            <li>Foundation for scaling the network beyond the Houston metro.</li>
+            <li>Foundation for scaling urgent-need coverage beyond the Houston metro.</li>
           </ul>
-          <p class="tagline">One cloud. Every node. Full visibility.</p>
+          <p class="tagline">One cloud. Every node. Always ready.</p>
         </div>
       </div>
     </section>
@@ -952,23 +1285,23 @@
     <!-- EVA Mart Detail -->
     <section id="evamart">
       <div class="section-kicker">Wedge Product</div>
-      <h2 class="section-title">EVA Mart — The store in your neighborhood.</h2>
+      <h2 class="section-title">EVA Mart — Urgent-need essentials, right where you are.</h2>
       <p class="section-lead">
-        A fully autonomous retail unit deployed where people already live. No supermarket trip. No full retail markup. No delivery fees. Just product at wholesale prices, available around the clock.
+        EVA Mart is a mobile, autonomous micro-store that sits where people already are — so when they run out of essentials, they can grab what they need in minutes, without delivery fees or a supermarket trip.
       </p>
 
       <div class="pods-layout">
         <div class="card">
-          <h3 class="card-title">Why neighborhood residents choose EVA Mart</h3>
+          <h3 class="card-title">Why residents reach for EVA Mart first</h3>
           <ul>
-            <li>Closer than the supermarket — a short drive instead of a full shopping trip.</li>
-            <li>Pre-order on the app and pick up on the way home.</li>
-            <li>Wholesale pricing beats the supermarket on price every time.</li>
-            <li>No delivery fees, no wait time, no minimum order.</li>
-            <li>Dry goods, cleaning supplies, paper goods, and essentials — always in stock.</li>
-            <li>Available at 2am. Priced better than anywhere within driving distance.</li>
+            <li>Walk up or drive up — no parking lot, no checkout line, no wasted time.</li>
+            <li>Pre-order on the app and pick up on the way home in minutes.</li>
+            <li>Priced below convenience stores — wholesale economics, no middleman markup.</li>
+            <li>No delivery fees, no tips, no minimum order, no surge pricing.</li>
+            <li>Dry goods, cleaning supplies, paper goods, and urgent-need essentials — always in stock.</li>
+            <li>Available at 2am, priced better than anywhere nearby.</li>
           </ul>
-          <p class="tagline">Closer. Cheaper. Pre-ordered before you leave the house.</p>
+          <p class="tagline">Need it now? Walk up, grab it, go. No fees. No wait.</p>
           <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
             <span class="pods-badge">Dry goods</span>
             <span class="pods-badge">Cleaning supplies</span>
@@ -983,11 +1316,11 @@
           <div class="pods-visual-main">EVA Mart — Mobile Autonomous Retail Unit</div>
           <img src="eva_mart_mobile.png" alt="EVA Mart mobile unit with arm robots stocking shelves" style="width:100%;height:auto;border-radius:12px;margin-bottom:16px;margin-top:8px;box-shadow:0 0 20px rgba(53,226,138,0.2);">
           <div class="pods-visual-sub">
-            EVA Mart is a self-contained mobile unit — not a fixed structure. It moves to where demand is, parks in a neighborhood, and arm robots handle all restocking and dispensing autonomously.
+            EVA Mart is a self-contained mobile unit — not a fixed structure. It moves to where urgent-need demand is, and arm robots handle all restocking and dispensing autonomously, 24/7.
           </div>
           <div class="pods-drive-strip">
             <span class="pods-drive-dot"></span>
-            <span>Pre-order on the app → drive up → arm robot fulfills. Faster than any supermarket run.</span>
+            <span>Pre-order on the app → drive up → arm robot fulfills. Instant access. No fees. No wait.</span>
           </div>
         </aside>
       </div>
@@ -996,7 +1329,7 @@
     <!-- Phase 1 Pilot -->
     <section id="pilot">
       <div class="section-kicker">Phase 1</div>
-      <h2 class="section-title">Taylor-Dunn Pilot — The bridge to full autonomy.</h2>
+      <h2 class="section-title">WAEV Taylor-Dunn Pilot — The bridge to full autonomy.</h2>
       <p class="section-lead">
         Before EVA builds its own Autonomous Delivery Vehicle, it validates every assumption on a proven industrial platform. Phase 1 is about data, not hardware.
       </p>
@@ -1051,7 +1384,7 @@
 
       <div class="duo-footer" style="margin-top:20px;">
         <strong>Phase 1 → EVA ADV:</strong>&nbsp;
-        Everything proven on the Taylor-Dunn platform becomes the operational blueprint for EVA's Autonomous Delivery Vehicle.
+        Everything proven on the WAEV Taylor-Dunn platform becomes the operational blueprint for EVA's Autonomous Delivery Vehicle.
         <br/>
         <span>The pilot is not a prototype — it's a live, revenue-generating proof of concept.</span>
       </div>
@@ -1118,69 +1451,118 @@
       </div>
     </section>
 
-    <!-- Why EVA Wins -->
-    <section id="why">
-      <div class="section-kicker">Market Position</div>
-      <h2 class="section-title">Why EVA wins. Why now.</h2>
+    <!-- Why Now -->
+    <section id="why-now">
+      <div class="section-kicker">Why Now</div>
+      <h2 class="section-title">The moment for neighborhood retail is here.</h2>
       <p class="section-lead">
-        EVA doesn't compete with DoorDash, Instacart, or convenience stores. It creates a category they can't reach: autonomous retail micro-infrastructure embedded directly in neighborhoods.
+        Every condition that makes EVA necessary — and possible — is converging right now.
       </p>
 
-      <div class="grid-2">
-        <div class="card">
-          <h3 class="card-title">Wholesale beats everyone on price</h3>
-          <ul>
-            <li>DoorDash, Instacart, and Favor add 25–40% in fees on top of inflated retail prices.</li>
-            <li>7-Eleven and CVS mark up 40–60% over their own wholesale cost.</li>
-            <li>EVA sources at wholesale and passes savings while keeping its spread.</li>
-            <li>Residents pay less. EVA earns more. No platform takes a cut.</li>
-          </ul>
-          <p class="tagline">Lower price. Better margin. No middleman.</p>
+      <div class="why-now-grid">
+        <div class="why-now-item">
+          <strong>Delivery fees are too high</strong>
+          25–40% markup before you tip. Residents are exhausted by it, and the behavior is there for a better option.
         </div>
-
-        <div class="card">
-          <h3 class="card-title">Hyper-local sourcing is a moat</h3>
-          <ul>
-            <li>National wholesalers are built for restaurants, not autonomous retail nodes.</li>
-            <li>EVA's Houston metro supplier network is faster, cheaper, and more flexible.</li>
-            <li>Distributor relationships compound — stronger with every unit deployed.</li>
-            <li>Local supply chains are defensible. National players can't replicate them quickly.</li>
-          </ul>
-          <p class="tagline">The Houston metro is the moat. EVA builds it first.</p>
+        <div class="why-now-item">
+          <strong>Convenience stores are overpriced</strong>
+          40–60% above wholesale. The only "fast" option available today costs too much.
         </div>
-      </div>
-
-      <div class="grid-2" style="margin-top:22px;">
-        <div class="card">
-          <h3 class="card-title">Residents want a shorter trip and a lower price</h3>
-          <ul>
-            <li>The average supermarket trip takes 45 minutes and costs full retail markup.</li>
-            <li>Delivery apps charge fees, inflate prices, and still take 30–60 minutes.</li>
-            <li>EVA Mart is closer — pre-order on the app and pick up on the way home.</li>
-            <li>No tipping, no surge pricing, no minimum order, no parking lot.</li>
-          </ul>
-          <p class="tagline">The best store is the one that's already on your route.</p>
+        <div class="why-now-item">
+          <strong>Amazon is too slow</strong>
+          2.5 day average fulfillment. Great for planned purchases — useless when you need it tonight.
         </div>
-
-        <div class="card">
-          <h3 class="card-title">A new category. No direct competitor.</h3>
-          <ul>
-            <li>Micro-market kiosks don't do autonomous restocking or hyper-local sourcing.</li>
-            <li>Smart vending doesn't have a wholesale supply engine or gig delivery mesh.</li>
-            <li>Delivery apps don't build physical retail infrastructure at the property level.</li>
-            <li>EVA is the first to stack all four layers into one operating system.</li>
-          </ul>
-          <p class="tagline">EVA isn't competing for market share. It's creating the market.</p>
+        <div class="why-now-item">
+          <strong>People want instant access</strong>
+          The demand is already there. No one is building local, affordable, instant retail at the neighborhood level.
+        </div>
+        <div class="why-now-item">
+          <strong>Robotics costs have dropped</strong>
+          The technology to run autonomous retail is finally affordable at small scale. EVA is positioned to use it first.
+        </div>
+        <div class="why-now-item">
+          <strong>Neighborhood retail is broken</strong>
+          No infrastructure exists that is both instant and below convenience pricing. That gap is EVA's entire market.
         </div>
       </div>
     </section>
 
-    <!-- About -->
+    <!-- Where We Are Today -->
+    <section id="today">
+      <div class="section-kicker">Where We Are Today</div>
+      <h2 class="section-title">Real progress. Not just a deck.</h2>
+      <p class="section-lead">
+        EVA is not an idea — it's an operating company in build phase with real momentum.
+      </p>
+      <ul class="status-list">
+        <li class="status-item done">
+          <span class="status-check">✓</span>
+          Enterprise software 95% complete
+        </li>
+        <li class="status-item done">
+          <span class="status-check">✓</span>
+          Architecture locked
+        </li>
+        <li class="status-item progress">
+          <span class="status-check">→</span>
+          Supplier network forming
+        </li>
+        <li class="status-item progress">
+          <span class="status-check">→</span>
+          First EVA Mart unit in build phase
+        </li>
+        <li class="status-item progress">
+          <span class="status-check">→</span>
+          Houston deployment plan defined
+        </li>
+      </ul>
+    </section>
+
+    <!-- What We're Raising -->
+    <section id="raising">
+      <div class="section-kicker">The Ask</div>
+      <h2 class="section-title">What we're raising.</h2>
+      <p class="section-lead">
+        Raising an angel round to deploy the first EVA Mart in Houston.
+      </p>
+      <div class="grid-2" style="margin-top:4px;">
+        <div class="card">
+          <h3 class="card-title">This round funds</h3>
+          <ul>
+            <li>First EVA Mart unit build</li>
+            <li>Houston deployment and site setup</li>
+            <li>SKU selection and behavior validation</li>
+            <li>Supplier network integration</li>
+            <li>Early traction data and unit economics proof</li>
+          </ul>
+          <p class="tagline">One unit. Real data. The foundation for everything that follows.</p>
+          <div style="margin-top:18px;">
+            <button class="btn-primary" type="button" onclick="window.location.href='mailto:tom.fanara@eva-systems.net?subject=Investor Deck Request'">Request Investor Deck</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Why angel, not seed VC</h3>
+          <ul>
+            <li>This is validation capital — proving the unit model before scaling.</li>
+            <li>Angels move faster and understand early-stage hardware deployment.</li>
+            <li>The seed VC round comes after Phase 1 data is in hand.</li>
+            <li>You are not betting on a deck — you are funding proof.</li>
+          </ul>
+          <p class="tagline">Angel capital now. Seed round to follow once the data is real.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Meet the Founder -->
     <section id="about">
-      <div class="section-kicker">About EVA</div>
-      <h2 class="section-title">Built by an operator who ships.</h2>
+      <div class="section-kicker">Meet the Founder</div>
+      <h2 class="section-title">Built by someone who lived the problem.</h2>
       <p class="section-lead">
         EVA Systems is a Houston-based startup building the infrastructure layer for autonomous neighborhood retail. Founded in 2025, EVA is designing the full stack — from the retail node to the supply engine to the delivery mesh — under one roof.
+      </p>
+
+      <p class="founder-quote">
+        "I built EVA because I've lived the problem. When people run out of essentials, every option is slow, expensive, or inconvenient. I'm building EVA to fix that — starting in Houston."
       </p>
 
       <div class="card leader-card" style="max-width:560px;">
@@ -1198,7 +1580,7 @@
         <strong>Founder-led.</strong>&nbsp;
         EVA is built by the person who designed it — with full ownership of vision, architecture, and execution.
         <br/>
-        <span>Building the operating system for autonomous retail micro-infrastructure.</span>
+        <span>Building the missing infrastructure for urgent-need fulfillment.</span>
       </div>
     </section>
 
@@ -1207,16 +1589,16 @@
       <div class="section-kicker">Get In Touch</div>
       <h2 class="section-title">Invest. Partner. Deploy.</h2>
       <p class="section-lead">
-        EVA is raising a seed round and deploying its first units in the Houston metro. Whether you are an investor, property manager, wholesale distributor, or gig driver — there is a place for you in the EVA network.
+        EVA is raising a seed round and deploying its first urgent-need fulfillment nodes in the Houston metro. Whether you are an investor, property owner, wholesale distributor, or gig driver — there is a place for you in the EVA network.
       </p>
 
       <div class="grid-2" style="margin-top:4px;">
         <div class="card">
           <h3 class="card-title">Investors</h3>
-          <p class="card-subtitle">Seed round open now.</p>
+          <p class="card-subtitle">Angel round open now.</p>
           <ul>
             <li>Request the full investor deck and financial model.</li>
-            <li>Review Phase 1 pilot data and unit economics.</li>
+            <li>Review Phase 1 pilot plan and unit economics.</li>
             <li>Meet the founder.</li>
           </ul>
           <div style="margin-top:16px;">
@@ -1225,12 +1607,13 @@
         </div>
 
         <div class="card">
-          <h3 class="card-title">Property Managers</h3>
-          <p class="card-subtitle">Houston metro — first cohort deploying now.</p>
+          <h3 class="card-title">Property Owners &amp; Operators</h3>
+          <p class="card-subtitle">EVA nodes can be deployed on properties, campuses, and logistics hubs — but the real value is serving the urgent-need behavior of the people who live, work, and move through those spaces.</p>
           <ul>
-            <li>Deploy EVA Mart in your neighborhood or property at no upfront cost.</li>
+            <li>Give your tenants 24/7 urgent-need access to essentials — without adding staff or building a full store.</li>
+            <li>No upfront cost. No lease-heavy footprint. No staffing overhead.</li>
             <li>Earn passive revenue on every resident transaction.</li>
-            <li>Add a 24/7 amenity that drives satisfaction and retention.</li>
+            <li>Increase tenant satisfaction, dwell time, and retention with an on-site amenity that actually matters.</li>
           </ul>
           <div style="margin-top:16px;">
             <button class="btn-primary" type="button" onclick="window.location.href='mailto:tom.fanara@eva-systems.net?subject=Property Partner Inquiry'">Partner With Us</button>
@@ -1278,7 +1661,7 @@
 
     <footer>
       <div>© <span id="year"></span> EVA Systems, LLC. All rights reserved.</div>
-      <div>EVA Mart · EVA Restock · EVA DropShift · EVA Cloud — Autonomous Retail Infrastructure.</div>
+      <div>EVA Mart · EVA Restock · EVA DropShift · EVA Cloud — Urgent-Need Fulfillment Infrastructure.</div>
       <div><a href="mailto:tom.fanara@eva-systems.net">tom.fanara@eva-systems.net</a> · Houston, TX</div>
     </footer>
   </main>
