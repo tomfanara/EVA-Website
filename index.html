@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>EVA Systems — Urgent-Need Fulfillment Infrastructure</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="EVA is a neighborhood micro-store that gives people instant access to essentials — cheaper than convenience stores, with no delivery fees. Deploying in Houston, TX." />
+  <meta name="description" content="EVA is a neighborhood micro-store that gives people instant access to essentials — cheaper than general retail stores, with no delivery fees. Deploying in Houston, TX." />
   <style>
     :root {
       --bg: #050608;
@@ -139,6 +139,51 @@
       border-radius: 999px;
       background: var(--accent);
       box-shadow: 0 0 10px rgba(53, 226, 138, 0.8);
+    }
+
+    .intro-video {
+      position: relative;
+      margin-bottom: 28px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.85) 0%, rgba(5, 6, 8, 0.92) 100%);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75), var(--shadow-glow);
+    }
+
+    .intro-video::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 6, 8, 0.08) 0%, rgba(5, 6, 8, 0.42) 100%);
+      pointer-events: none;
+    }
+
+    .intro-video video {
+      display: block;
+      width: 100%;
+      max-height: 72vh;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .intro-video-caption {
+      position: absolute;
+      left: 38px;
+      bottom: 8px;
+      z-index: 1;
+      max-width: min(560px, calc(100% - 36px));
+      padding: 9px 13px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(5, 6, 8, 0.48);
+      backdrop-filter: blur(10px);
+      color: var(--text);
+      font-size: clamp(0.8rem, 1.25vw, 1rem);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.35;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
     }
 
     /* Hero */
@@ -942,6 +987,9 @@
     /* Responsive */
 
     @media (max-width: 900px) {
+      .intro-video video {
+        max-height: 56vh;
+      }
       .hero {
         grid-template-columns: minmax(0, 1fr);
         padding: 32px 24px;
@@ -962,6 +1010,22 @@
     @media (max-width: 640px) {
       main { padding-inline: 12px; padding-bottom: 48px; }
       section { padding: 20px 16px; }
+      .intro-video {
+        margin-bottom: 20px;
+        border-radius: 20px;
+      }
+      .intro-video video {
+        max-height: 42vh;
+      }
+      .intro-video-caption {
+        left: 30px;
+        right: 10px;
+        bottom: 8px;
+        max-width: none;
+        padding: 8px 10px;
+        border-radius: 12px;
+        font-size: 0.76rem;
+      }
       .hero { padding: 20px 16px; gap: 24px; }
       .section-title { font-size: 1.15rem; }
       .hero-title { font-size: clamp(1.6rem, 5vw, 2rem); }
@@ -978,6 +1042,14 @@
 </head>
 <body>
   <main>
+    <section class="intro-video" aria-label="Intro video">
+      <video id="intro-video" autoplay muted loop playsinline preload="auto">
+        <source src="good_but_use_this_vehicle_styl_web.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="intro-video-caption">EVA Test Unit — Human‑Supervised Adaptive Retail Mobile Unit</div>
+    </section>
+
     <header>
       <div class="logo-mark">
         <img src="eva_logo.png" alt="EVA Systems Logo" class="logo-icon">
@@ -1006,7 +1078,7 @@
           <span class="tag tag--accent">Instant Access</span>
           <span class="tag">Local</span>
           <span class="tag">No Delivery Fees</span>
-          <span class="tag">Below C-Store Prices</span>
+          <span class="tag">Below General Retail Prices</span>
         </div>
         <div class="hero-cta-row">
           <button class="btn-primary" type="button" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">See How EVA Works</button>
@@ -1072,11 +1144,11 @@
       <div class="section-kicker">What EVA Is</div>
       <h2 class="section-title">A neighborhood micro-store for everyday essentials.</h2>
       <p class="eva-statement">
-        EVA is a neighborhood micro-store that gives people instant access to essentials — cheaper than convenience stores, with no delivery fees.
+        EVA is a neighborhood micro-store that gives people instant access to essentials — cheaper than general retail stores, with no delivery fees.
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;">
         <span class="tag tag--accent">Instant access</span>
-        <span class="tag">Below C-store prices</span>
+        <span class="tag">Below general retail prices</span>
         <span class="tag">No delivery fees</span>
         <span class="tag">Right in your neighborhood</span>
         <span class="tag">Open 24/7</span>
@@ -1096,7 +1168,7 @@
           <ul>
             <li>You run out of paper towels at 9pm. The grocery store is 20 minutes away.</li>
             <li>You check DoorDash — $4 delivery fee, $3 service fee, 45 minutes, and the items cost 30% more than in-store.</li>
-            <li>You drive to the nearest convenience store and pay $6 for something that costs $2 at Walmart.</li>
+            <li>You drive to the nearest general retail store and pay $6 for something that costs $2 at Walmart.</li>
             <li>There is no good option. EVA is that option.</li>
           </ul>
         </div>
@@ -1104,7 +1176,7 @@
           <h3 class="card-title">What EVA changes</h3>
           <ul>
             <li>EVA Mart is right in your neighborhood — walk up in minutes.</li>
-            <li>Priced below your local convenience store, always.</li>
+            <li>Priced below your local general retail stores, always.</li>
             <li>No fees. No minimum. No wait.</li>
             <li>Available at 2am when nothing else is affordable or close.</li>
           </ul>
@@ -1179,7 +1251,7 @@
             </svg>
           </div>
           <div class="how-step-title">Grab what you need — no fees, no wait</div>
-          <div class="how-step-desc">Walk up or pre-order on the app. Cheaper than the convenience store. Done in minutes. No delivery fee, no tip, no minimum.</div>
+          <div class="how-step-desc">Walk up or pre-order on the app. Cheaper than the general retail store. Done in minutes. No delivery fee, no tip, no minimum.</div>
         </div>
       </div>
     </section>
@@ -1198,8 +1270,8 @@
           <ul>
             <li>Amazon's margins are competitive, but their average fulfillment time is 2.5 days — useless when you need it tonight.</li>
             <li>Delivery apps add 25–40% in fees, tips, and inflated prices — then take 30–60 minutes.</li>
-            <li>C-stores are overpriced and limited — 40–60% markup over wholesale on a thin SKU set.</li>
-            <li>Supermarkets require a trip, parking, and 45 minutes out of your day.</li>
+            <li>Traditional retail is distant — supermarkets require a trip, parking, and 45 minutes out of your day.</li>
+            <li>No existing option combines instant access, low cost, and nearby convenience.</li>
           </ul>
           <p class="tagline">When people need something right now, there's no fast, affordable option.</p>
         </div>
@@ -1233,7 +1305,7 @@
             <li>A mobile, autonomous micro-store that sits inside neighborhoods — so when people run out, they can grab what they need in minutes.</li>
             <li>Walk-up or drive-up access. No delivery fees. No minimum order. No wait.</li>
             <li>Sells dry goods, essentials, paper goods, cleaning supplies, snacks, and everyday urgent-need items.</li>
-            <li>Priced below convenience retail — wholesale economics passed directly to residents.</li>
+            <li>Priced below general retail — wholesale economics passed directly to residents.</li>
             <li>Operates 24/7 with zero staff.</li>
           </ul>
           <p class="tagline">Need it now? It's right there. Cheaper than anywhere else nearby.</p>
@@ -1282,6 +1354,43 @@
       </div>
     </section>
 
+    <!-- Space Technology Infrastructure -->
+    <section id="space-infrastructure" style="margin-top: 56px;">
+      <div class="section-kicker">Infrastructure Backbone</div>
+      <h2 class="section-title">Space technology powers global-scale coordination.</h2>
+      <p class="section-lead">
+        EVA's distributed network relies on two critical space-enabled capabilities: real-time orbital insights for demand forecasting and continuous satellite communications for operational resilience.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">Privateer — Orbital Intelligence</h3>
+          <p class="card-subtitle">Real-time Earth observation for demand signals.</p>
+          <ul>
+            <li>Satellite imagery feeds operational intelligence on foot traffic, dwell time, and demand patterns in real time.</li>
+            <li>Enables predictive restock scheduling — know what neighborhoods need before urgent demand spikes.</li>
+            <li>Validates node placement ROI by confirming neighborhood adoption and foot traffic patterns.</li>
+            <li>Provides asset tracking and visibility across the entire EVA network fleet.</li>
+            <li>Foundation for scaling to new cities with data-driven site selection.</li>
+          </ul>
+          <p class="tagline">See demand. Predict need. Optimize placement.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Starlink — Steady Communications Layer</h3>
+          <p class="card-subtitle">Reliable connectivity for every node, everywhere.</p>
+          <ul>
+            <li>Satellite-backed internet ensures EVA nodes stay connected even during local network outages.</li>
+            <li>Low-latency communication for real-time inventory updates and SLA compliance.</li>
+            <li>Enables 24/7 autonomous operation without dependency on terrestrial cell coverage.</li>
+            <li>Backup redundancy — if ground infrastructure fails, Starlink keeps logistics flowing.</li>
+            <li>Foundation for expanding EVA network beyond Houston to underserved rural and remote neighborhoods.</li>
+          </ul>
+          <p class="tagline">Always connected. Never isolated. Network resilience built in.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- EVA Mart Detail -->
     <section id="evamart">
       <div class="section-kicker">Wedge Product</div>
@@ -1296,7 +1405,7 @@
           <ul>
             <li>Walk up or drive up — no parking lot, no checkout line, no wasted time.</li>
             <li>Pre-order on the app and pick up on the way home in minutes.</li>
-            <li>Priced below convenience stores — wholesale economics, no middleman markup.</li>
+            <li>Priced below general retail stores — wholesale economics, no middleman markup.</li>
             <li>No delivery fees, no tips, no minimum order, no surge pricing.</li>
             <li>Dry goods, cleaning supplies, paper goods, and urgent-need essentials — always in stock.</li>
             <li>Available at 2am, priced better than anywhere nearby.</li>
@@ -1403,7 +1512,7 @@
           <h3 class="card-title">Stream 1 — Retail Margin</h3>
           <p class="card-subtitle">Source: EVA Mart</p>
           <ul>
-            <li>EVA buys at wholesale and sells at a margin below convenience retail.</li>
+            <li>EVA buys at wholesale and sells at a margin below general retail.</li>
             <li>Residents get a better price. EVA keeps the spread.</li>
             <li>High-frequency, high-velocity purchases compound daily.</li>
             <li>Scales linearly with every unit deployed.</li>
@@ -1465,8 +1574,8 @@
           25–40% markup before you tip. Residents are exhausted by it, and the behavior is there for a better option.
         </div>
         <div class="why-now-item">
-          <strong>Convenience stores are overpriced</strong>
-          40–60% above wholesale. The only "fast" option available today costs too much.
+          <strong>Instant retail doesn't exist at the neighborhood level</strong>
+          No solution today combines speed, affordability, and convenience in one place.
         </div>
         <div class="why-now-item">
           <strong>Amazon is too slow</strong>
@@ -1668,6 +1777,25 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const introVideo = document.getElementById("intro-video");
+
+    if (introVideo) {
+      const tryPlayIntroVideo = () => {
+        const playPromise = introVideo.play();
+
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {
+          });
+        }
+      };
+
+      if (introVideo.readyState >= 2) {
+        tryPlayIntroVideo();
+      } else {
+        introVideo.addEventListener("canplay", tryPlayIntroVideo, { once: true });
+      }
+    }
   </script>
 </body>
 </html>
