@@ -1,0 +1,2436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EVA Systems — Urgent-Need Fulfillment Infrastructure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="EVA is autonomous amenity infrastructure for multifamily and mixed-use developments, delivering hyper-local retail through mobility-first deployment in Houston, TX." />
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-alt: #0b0e13;
+      --text: #f5f7fa;
+      --muted: #9aa0b5;
+      --accent: #35e28a;
+      --accent-soft: rgba(53, 226, 138, 0.12);
+      --accent-warm: #ffb347;
+      --accent-cool: #4fb3ff;
+      --accent-purple: #e84aff;
+      --accent-pink: #ff3d6f;
+      --border: #1b2230;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      --radius: 12px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 40px rgba(53, 226, 138, 0.15);
+      --max-width: 1120px;
+    }
+
+    @keyframes float-up {
+      0% { transform: translateY(8px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(53, 226, 138, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(53, 226, 138, 0.8); }
+    }
+
+    @keyframes slide-in-left {
+      0% { transform: translateX(-20px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slide-in-right {
+      0% { transform: translateX(20px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-main);
+      background: linear-gradient(135deg, #0a0d15 0%, #050608 40%, #0f0812 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(53, 226, 138, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(79, 179, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(232, 74, 255, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 20px 64px;
+    }
+
+    header {
+      padding: 12px 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo-mark { display: flex; align-items: center; gap: 14px; }
+
+    .logo-icon {
+      width: 95px;
+      height: 95px;
+      border-radius: 26px;
+      box-shadow: 0 0 30px rgba(53, 226, 138, 0.6), 0 0 15px rgba(79, 179, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      animation: pulse-glow 3s ease-in-out infinite;
+      object-fit: contain;
+      object-position: center;
+      background: rgba(11, 14, 19, 0.5);
+      padding: 10px;
+      border: 1px solid rgba(53, 226, 138, 0.2);
+    }
+
+    .logo-icon:hover {
+      box-shadow: 0 0 40px rgba(53, 226, 138, 0.8), 0 0 20px rgba(79, 179, 255, 0.4);
+    }
+
+    .logo-text-main {
+      font-weight: 650;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-pill {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(7, 10, 18, 0.9);
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(53, 226, 138, 0.8);
+    }
+
+    .intro-video {
+      position: relative;
+      margin-bottom: 28px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.85) 0%, rgba(5, 6, 8, 0.92) 100%);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75), var(--shadow-glow);
+    }
+
+    .intro-video::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 6, 8, 0.08) 0%, rgba(5, 6, 8, 0.42) 100%);
+      pointer-events: none;
+    }
+
+    .intro-video video {
+      display: block;
+      width: 100%;
+      max-height: 72vh;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .intro-video-caption {
+      position: absolute;
+      left: 38px;
+      bottom: 8px;
+      z-index: 1;
+      max-width: min(560px, calc(100% - 36px));
+      padding: 9px 13px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(5, 6, 8, 0.48);
+      backdrop-filter: blur(10px);
+      color: var(--text);
+      font-size: clamp(0.8rem, 1.25vw, 1rem);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.35;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 32px;
+      padding: 40px 32px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.8) 0%, rgba(5, 6, 8, 0.6) 100%);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), var(--shadow-glow);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -30%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(79, 179, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero > div:first-child { position: relative; z-index: 1; }
+
+    .hero-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 600;
+      display: inline-block;
+      background: var(--accent-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(53, 226, 138, 0.3);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      font-weight: 680;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      animation: slide-in-left 0.8s ease-out;
+    }
+
+    .hero-title span { color: var(--accent); }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 32rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border-radius: 999px;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(7, 10, 18, 0.9);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .tag:hover {
+      border-color: rgba(79, 179, 255, 0.4);
+      background: rgba(79, 179, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .tag--accent {
+      border-color: rgba(53, 226, 138, 0.5);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .tag--accent:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(53, 226, 138, 0.3);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      padding: 11px 24px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 550;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #35e28a 0%, #4fb3ff 100%);
+      color: #020305;
+      box-shadow: 0 8px 25px rgba(53, 226, 138, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(53, 226, 138, 0.6);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 10px 18px;
+      border: 1.5px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-ghost:hover {
+      background: var(--accent-soft);
+      box-shadow: 0 0 20px rgba(53, 226, 138, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .hero-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .hero-right {
+      position: relative;
+      padding: 20px 20px 24px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.6) 0%, rgba(11, 14, 19, 0.8) 100%);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: inset 0 0 40px rgba(53, 226, 138, 0.05);
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        linear-gradient(135deg, transparent 0%, rgba(79, 179, 255, 0.05) 50%),
+        linear-gradient(45deg, rgba(53, 226, 138, 0.05) 25%, transparent 25%);
+      pointer-events: none;
+    }
+
+    .hero-grid-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .eva-equation {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .eva-equation span { color: var(--accent); }
+
+    .eva-meaning {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      max-width: 42rem;
+    }
+
+    .eva-meaning strong {
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .pillars-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .pillars-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .pillar-card {
+      border-radius: 12px;
+      padding: 12px 12px 14px;
+      background: linear-gradient(135deg, rgba(53, 226, 138, 0.08) 0%, rgba(79, 179, 255, 0.08) 100%);
+      border: 1.5px solid var(--border);
+      font-size: 0.85rem;
+      position: relative;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .pillar-card:nth-child(1) { border-color: rgba(53, 226, 138, 0.4); }
+    .pillar-card:nth-child(2) { border-color: rgba(79, 179, 255, 0.4); }
+    .pillar-card:nth-child(3) { border-color: rgba(232, 74, 255, 0.4); }
+    .pillar-card:nth-child(4) { border-color: rgba(255, 179, 71, 0.4); }
+
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-color: transparent;
+    }
+
+    .pillar-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .pillar-name {
+      font-size: 0.9rem;
+      font-weight: 560;
+      margin-bottom: 4px;
+    }
+
+    .pillar-desc { font-size: 0.75rem; color: var(--muted); }
+
+    .hero-bottom-text {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .problem-tier {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(53, 226, 138, 0.16);
+    }
+
+    .hero-bottom-text span { color: var(--accent); }
+
+    /* EVA Cloud select screen */
+
+    .select-screen {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 26px;
+      background: linear-gradient(160deg, rgba(10, 14, 22, 0.96) 0%, rgba(5, 6, 8, 0.98) 70%);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .select-copy {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto;
+      animation: slide-in-left 0.55s ease-out;
+    }
+
+    .select-copy .section-kicker {
+      margin-bottom: 14px;
+      color: #d3d8e6;
+      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .select-copy .section-title {
+      margin-bottom: 8px;
+      background: linear-gradient(180deg, #f5f7fa 0%, #c6ccd8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    }
+
+    .select-subtitle {
+      color: var(--muted);
+      font-size: 0.86rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .select-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .select-card {
+      cursor: pointer;
+      padding: 12px 12px 14px;
+      background: linear-gradient(160deg, rgba(18, 24, 35, 0.9) 0%, rgba(6, 8, 12, 0.95) 100%);
+      border-color: rgba(255, 255, 255, 0.14);
+      animation: float-up 0.4s ease-out;
+    }
+
+    .select-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: rgba(79, 179, 255, 0.32);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(79, 179, 255, 0.16);
+    }
+
+    .select-card.is-active {
+      border-color: rgba(53, 226, 138, 0.38);
+      box-shadow: 0 14px 46px rgba(0, 0, 0, 0.55), 0 0 24px rgba(53, 226, 138, 0.18);
+    }
+
+    .select-visual {
+      height: 168px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #070a11 0%, #020409 70%);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), inset 0 -35px 60px rgba(64, 93, 130, 0.22);
+    }
+
+    .select-visual--earth::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 0;
+      height: 64px;
+      background:
+        linear-gradient(180deg, rgba(205, 216, 232, 0.92) 0%, rgba(107, 128, 157, 0.52) 58%, rgba(25, 43, 74, 0.78) 100%),
+        repeating-linear-gradient(90deg, rgba(196, 213, 233, 0.38) 0 2px, transparent 2px 10px);
+      clip-path: polygon(0 100%, 0 68%, 10% 68%, 10% 44%, 22% 44%, 22% 13%, 34% 13%, 34% 56%, 46% 56%, 46% 24%, 58% 24%, 58% 58%, 70% 58%, 70% 30%, 82% 30%, 82% 64%, 92% 64%, 92% 22%, 100% 22%, 100% 100%);
+      border-top: 1px solid rgba(204, 219, 238, 0.45);
+      z-index: 2;
+    }
+
+    .select-visual--earth::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 50px;
+      background:
+        radial-gradient(circle at 50% 108%, rgba(79, 179, 255, 0.5), transparent 55%),
+        linear-gradient(180deg, rgba(25, 42, 74, 0.16), rgba(25, 42, 74, 0.82));
+      z-index: 1;
+    }
+
+    .select-visual-earth-light {
+      position: absolute;
+      width: 2px;
+      height: 9px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(233, 245, 255, 0.95), rgba(79, 179, 255, 0.45));
+      box-shadow: 0 0 8px rgba(79, 179, 255, 0.45);
+      z-index: 3;
+    }
+
+    .select-visual--frontier {
+      background: linear-gradient(180deg, #06080f 0%, #03050a 60%);
+    }
+
+    .select-visual--frontier::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 108%, rgba(255, 179, 71, 0.5), transparent 52%);
+    }
+
+    .select-visual--frontier::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 42px;
+      background: linear-gradient(180deg, rgba(197, 205, 220, 0.28), rgba(114, 122, 136, 0.32));
+      clip-path: polygon(0 100%, 0 60%, 15% 48%, 32% 44%, 50% 51%, 67% 46%, 84% 52%, 100% 58%, 100% 100%);
+    }
+
+    .select-visual--moon {
+      background: radial-gradient(circle at 76% -8%, rgba(255, 255, 255, 0.12), transparent 42%), #03050a;
+    }
+
+    .select-visual--moon::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 76px;
+      background:
+        linear-gradient(180deg, rgba(242, 246, 255, 0.96), rgba(173, 184, 202, 0.82) 58%, rgba(118, 129, 146, 0.8) 100%),
+        radial-gradient(circle at 52% 10%, rgba(255, 255, 255, 0.42), transparent 58%);
+      clip-path: polygon(0 100%, 0 58%, 10% 34%, 22% 50%, 38% 26%, 52% 44%, 64% 32%, 78% 52%, 90% 38%, 100% 48%, 100% 100%);
+      box-shadow:
+        0 -8px 22px rgba(210, 224, 250, 0.35),
+        0 0 24px rgba(182, 201, 238, 0.22);
+    }
+
+    .select-visual--moon::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 24px;
+      height: 64px;
+      background:
+        radial-gradient(circle at 50% 80%, rgba(197, 217, 255, 0.34), transparent 58%),
+        radial-gradient(circle at 28% 84%, rgba(255, 255, 255, 0.2), transparent 48%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .select-visual--moon .select-visual-dot {
+      box-shadow: 0 0 18px rgba(225, 235, 255, 0.42);
+    }
+
+    .select-visual--moon .select-visual-star {
+      background: rgba(228, 236, 250, 0.86);
+      box-shadow: 0 0 6px rgba(206, 220, 245, 0.34);
+    }
+
+    .select-visual-spike {
+      position: absolute;
+      bottom: 42px;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(220, 228, 236, 0.95), rgba(105, 114, 126, 0.15));
+      box-shadow: 0 0 8px rgba(255, 179, 71, 0.35);
+      z-index: 2;
+    }
+
+    .select-visual-spike::after {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -1px;
+      width: 4px;
+      height: 2px;
+      background: rgba(240, 245, 252, 0.75);
+    }
+
+    .select-visual-dot {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, rgba(160, 174, 194, 0.75));
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.24);
+      z-index: 2;
+    }
+
+    .select-visual-dot.small {
+      width: 10px;
+      height: 10px;
+      opacity: 0.88;
+    }
+
+    .select-visual-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: rgba(214, 223, 236, 0.72);
+      z-index: 1;
+    }
+
+    .select-phase {
+      font-size: 0.64rem;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .select-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .select-title-row .card-title {
+      margin-bottom: 0;
+    }
+
+    .select-status {
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .select-card .card-subtitle {
+      margin-bottom: 6px;
+    }
+
+    .select-rail {
+      margin-top: 10px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(79, 179, 255, 0.35), rgba(53, 226, 138, 0.6));
+      border-radius: 999px;
+      opacity: 0.85;
+    }
+
+    .environment-panel-wrap {
+      margin-bottom: 40px;
+    }
+
+    .environment-panel {
+      display: none;
+      padding: 26px;
+      border-width: 1.5px;
+      animation: slide-in-right 0.4s ease-out;
+    }
+
+    .environment-panel.is-visible {
+      display: block;
+    }
+
+    .environment-panel[data-theme="earth"] {
+      border-color: rgba(53, 226, 138, 0.36);
+    }
+
+    .environment-panel[data-theme="frontier"] {
+      border-color: rgba(255, 179, 71, 0.34);
+    }
+
+    .environment-panel[data-theme="moon"] {
+      border-color: rgba(181, 194, 216, 0.34);
+    }
+
+    .environment-head {
+      margin-bottom: 14px;
+    }
+
+    .environment-title {
+      font-size: clamp(1.3rem, 2vw, 1.8rem);
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      font-weight: 650;
+    }
+
+    .environment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .environment-item {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 14px 14px 15px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.45) 0%, rgba(11, 14, 19, 0.75) 100%);
+    }
+
+    .environment-item-label {
+      font-size: 0.64rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .environment-item-copy {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.52;
+    }
+
+    section {
+      margin-bottom: 48px;
+      padding: 32px 24px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(25, 35, 60, 0.3) 0%, rgba(5, 6, 8, 0.1) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section:nth-child(2n) {
+      background: linear-gradient(135deg, rgba(44, 28, 70, 0.2) 0%, rgba(5, 6, 8, 0.1) 100%);
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 200%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.1;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-weight: 600;
+      display: inline-block;
+      background: var(--accent-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(53, 226, 138, 0.3);
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 620;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-lead {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 40rem;
+      margin-bottom: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr);
+      gap: 22px;
+    }
+
+    .card {
+      border-radius: 16px;
+      padding: 20px 22px 24px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.4) 0%, rgba(11, 14, 19, 0.6) 100%);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(79, 179, 255, 0.03);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -50%;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(53, 226, 138, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(53, 226, 138, 0.2);
+      box-shadow: 0 12px 48px rgba(53, 226, 138, 0.15), inset 0 0 20px rgba(79, 179, 255, 0.05);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
+      box-shadow: 0 0 10px rgba(53, 226, 138, 0.5);
+    }
+
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .card ul { list-style: none; font-size: 0.86rem; color: var(--text); }
+
+    .card li {
+      margin-bottom: 8px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .card li::before {
+      content: "";
+      margin-top: 6px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
+      flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(53, 226, 138, 0.6);
+    }
+
+    .tagline {
+      font-size: 0.86rem;
+      color: var(--accent);
+      margin-top: 12px;
+      font-weight: 500;
+      padding: 8px 12px;
+      background: var(--accent-soft);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+    }
+
+    /* EVA Mart detail layout */
+
+    .pods-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .pods-visual {
+      border-radius: 18px;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.6) 0%, rgba(11, 14, 19, 0.8) 100%);
+      border: 1.5px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      box-shadow: 0 0 40px rgba(79, 179, 255, 0.1);
+    }
+
+    .pods-visual::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -30%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(79, 179, 255, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float-up 4s ease-in-out infinite;
+    }
+
+    .pods-visual::after {
+      content: '';
+      position: absolute;
+      bottom: -40%; left: -20%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(53, 226, 138, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .pods-visual-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .pods-visual-main {
+      font-size: 1rem;
+      font-weight: 580;
+      margin-bottom: 6px;
+    }
+
+    .pods-visual-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .pods-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .pods-badge {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border-radius: 999px;
+      padding: 6px 11px;
+      border: 1px solid rgba(53, 226, 138, 0.5);
+      color: var(--accent);
+      background: var(--accent-soft);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .pods-badge:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(53, 226, 138, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .pods-drive-strip {
+      margin-top: 10px;
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, rgba(53, 226, 138, 0.12), rgba(79, 179, 255, 0.08));
+      font-size: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .pods-drive-dot {
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(53, 226, 138, 0.8);
+      flex-shrink: 0;
+    }
+
+    /* Phase 1 workflow */
+
+    .workflow-steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      position: relative;
+    }
+
+    .workflow-steps::before {
+      content: '';
+      position: absolute;
+      top: 24px; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%);
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .step-card {
+      border-radius: 14px;
+      padding: 16px 14px 18px;
+      background: linear-gradient(135deg, rgba(53, 226, 138, 0.06) 0%, rgba(79, 179, 255, 0.04) 100%);
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      position: relative;
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+
+    .step-card:hover {
+      border-color: rgba(53, 226, 138, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(53, 226, 138, 0.2);
+    }
+
+    .step-index {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+      color: #020305;
+    }
+
+    .step-title { font-weight: 560; margin-bottom: 4px; }
+    .step-desc { font-size: 0.8rem; color: var(--muted); }
+
+    /* Team */
+
+    .leaders-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 20px;
+    }
+
+    .leader-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .leader-name::before {
+      content: '';
+      display: inline-block;
+      width: 3px; height: 16px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cool) 100%);
+      border-radius: 999px;
+    }
+
+    .leader-title { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+    .leader-card ul { font-size: 0.86rem; }
+    .leader-card { position: relative; }
+
+    .leader-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .duo-footer {
+      margin-top: 20px;
+      border-radius: 16px;
+      padding: 16px 18px;
+      border: 1.5px solid rgba(53, 226, 138, 0.3);
+      background: linear-gradient(135deg, rgba(53, 226, 138, 0.08) 0%, rgba(79, 179, 255, 0.05) 100%);
+      font-size: 0.85rem;
+      color: var(--text);
+      box-shadow: inset 0 0 20px rgba(53, 226, 138, 0.05);
+    }
+
+    .duo-footer strong { color: var(--accent); font-weight: 600; }
+    .duo-footer span { color: var(--accent-cool); }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.2) 0%, transparent 100%);
+      border-radius: 16px;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover { color: var(--accent-cool); }
+
+    /* ── New section styles ── */
+
+    .eva-statement {
+      font-size: 1.35rem;
+      line-height: 1.6;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 14px 0 20px;
+      font-weight: 400;
+    }
+
+    /* How EVA Works */
+    .how-steps {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-top: 28px;
+    }
+
+    .how-step {
+      flex: 1;
+      border-radius: 20px;
+      padding: 28px 22px;
+      background: linear-gradient(135deg, rgba(24,32,51,0.6) 0%, rgba(11,14,19,0.8) 100%);
+      border: 1.5px solid var(--border);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .how-step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(53,226,138,0.15);
+    }
+
+    .how-step:nth-child(1) { border-color: rgba(255,61,111,0.35); }
+    .how-step:nth-child(3) { border-color: rgba(79,179,255,0.35); }
+    .how-step:nth-child(5) { border-color: rgba(53,226,138,0.4); }
+
+    .how-step-num {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-cool));
+      color: #020305;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+      box-shadow: 0 0 16px rgba(53,226,138,0.4);
+    }
+
+    .how-step-icon {
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      opacity: 0.85;
+    }
+
+    .how-step-title {
+      font-size: 0.95rem;
+      font-weight: 620;
+      margin-bottom: 8px;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .how-step-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .how-step-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      flex-shrink: 0;
+      opacity: 0.4;
+    }
+
+    .adoption-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .adoption-stage {
+      border-radius: 14px;
+      padding: 16px 14px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.5) 0%, rgba(11, 14, 19, 0.75) 100%);
+      transition: all 0.3s ease;
+    }
+
+    .adoption-stage:hover {
+      transform: translateY(-3px);
+      border-color: rgba(53, 226, 138, 0.3);
+      box-shadow: 0 10px 26px rgba(53, 226, 138, 0.12);
+    }
+
+    .adoption-stage-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .adoption-stage-title {
+      font-size: 0.92rem;
+      font-weight: 620;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .adoption-stage-copy {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .pilot-highlight {
+      border-radius: 16px;
+      padding: 16px 18px;
+      border: 1.5px solid rgba(79, 179, 255, 0.3);
+      background: linear-gradient(135deg, rgba(79, 179, 255, 0.09) 0%, rgba(53, 226, 138, 0.07) 100%);
+      font-size: 0.86rem;
+      margin-top: 14px;
+    }
+
+    .version-roadmap {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .version-card {
+      border-radius: 14px;
+      padding: 16px 14px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.55) 0%, rgba(11, 14, 19, 0.78) 100%);
+      transition: all 0.3s ease;
+    }
+
+    .version-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(79, 179, 255, 0.35);
+    }
+
+    .version-stage {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-cool);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .version-title {
+      font-size: 0.93rem;
+      font-weight: 620;
+      margin-bottom: 8px;
+    }
+
+    .version-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .cost-ladder {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .cost-item {
+      border-radius: 14px;
+      padding: 16px 14px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(53, 226, 138, 0.07), rgba(79, 179, 255, 0.05));
+    }
+
+    .cost-value {
+      font-size: 1.18rem;
+      line-height: 1.1;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .cost-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* Why Now grid */
+    .why-now-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .why-now-item {
+      border-radius: 14px;
+      padding: 18px 18px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(24,32,51,0.4) 0%, rgba(5,6,8,0.3) 100%);
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.5;
+      transition: all 0.3s ease;
+    }
+
+    .why-now-item:hover {
+      border-color: rgba(53,226,138,0.2);
+      transform: translateY(-2px);
+    }
+
+    .why-now-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    /* Status list */
+    .status-list {
+      list-style: none;
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .status-item:hover { transform: translateX(4px); }
+
+    .status-item.done {
+      background: rgba(53,226,138,0.08);
+      border: 1px solid rgba(53,226,138,0.25);
+    }
+
+    .status-item.progress {
+      background: rgba(79,179,255,0.07);
+      border: 1px solid rgba(79,179,255,0.2);
+    }
+
+    .status-check {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .status-item.done .status-check {
+      background: rgba(53,226,138,0.2);
+      color: var(--accent);
+      box-shadow: 0 0 10px rgba(53,226,138,0.25);
+    }
+
+    .status-item.progress .status-check {
+      background: rgba(79,179,255,0.15);
+      color: var(--accent-cool);
+    }
+
+    /* Founder quote */
+    .founder-quote {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text);
+      max-width: 540px;
+      margin-bottom: 22px;
+      padding: 18px 22px;
+      border-radius: 12px;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* Space Infrastructure banner */
+    .space-banner {
+      margin-top: 18px;
+      margin-bottom: 22px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(79, 179, 255, 0.25);
+      background: linear-gradient(135deg, rgba(24, 32, 51, 0.82) 0%, rgba(5, 6, 8, 0.92) 100%);
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55), 0 0 32px rgba(79, 179, 255, 0.14);
+      position: relative;
+    }
+
+    .space-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 6, 8, 0.08) 0%, rgba(5, 6, 8, 0.56) 100%);
+      pointer-events: none;
+    }
+
+    .space-banner img {
+      width: 100%;
+      height: clamp(260px, 38vw, 430px);
+      display: block;
+      object-fit: cover;
+      object-position: center 68%;
+    }
+
+    .space-banner-caption {
+      position: absolute;
+      left: 16px;
+      top: 14px;
+      z-index: 1;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(5, 6, 8, 0.5);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .intro-video video {
+        max-height: 56vh;
+      }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 32px 24px;
+      }
+      .grid-2, .pods-layout, .leaders-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .workflow-steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .workflow-steps::before { display: none; }
+      .how-steps { flex-direction: column; gap: 10px; }
+      .how-step-arrow { display: none; }
+      .adoption-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .version-roadmap, .cost-ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .why-now-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .select-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .environment-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      main { padding-inline: 12px; padding-bottom: 48px; }
+      section { padding: 20px 16px; }
+      .intro-video {
+        margin-bottom: 20px;
+        border-radius: 20px;
+      }
+      .intro-video video {
+        max-height: 42vh;
+      }
+      .intro-video-caption {
+        left: 30px;
+        right: 10px;
+        bottom: 8px;
+        max-width: none;
+        padding: 8px 10px;
+        border-radius: 12px;
+        font-size: 0.76rem;
+      }
+      .hero { padding: 20px 16px; gap: 24px; }
+      .section-title { font-size: 1.15rem; }
+      .hero-title { font-size: clamp(1.6rem, 5vw, 2rem); }
+      .workflow-steps { grid-template-columns: minmax(0, 1fr); }
+      .pillars-row-2 { grid-template-columns: minmax(0, 1fr); }
+      header { flex-direction: column; gap: 12px; }
+      .nav-pill { font-size: 0.7rem; }
+      .adoption-grid, .version-roadmap, .cost-ladder { grid-template-columns: minmax(0,1fr); }
+      .why-now-grid { grid-template-columns: minmax(0,1fr); }
+      .eva-statement { font-size: 1.05rem; }
+      .founder-quote { font-size: 0.95rem; }
+      .status-list { grid-template-columns: 1fr; }
+      .space-banner img {
+        height: 240px;
+        object-position: center 72%;
+      }
+      .space-banner-caption {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        font-size: 0.72rem;
+      }
+      .select-grid { grid-template-columns: 1fr; }
+      .select-visual { height: 150px; }
+      .environment-panel { padding: 18px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="adoption-curve">
+      <div class="section-kicker">Innovation Adoption Curve</div>
+      <h2 class="section-title">EVA scales through the adoption sequence, not around it.</h2>
+      <p class="section-lead">
+        EVA enters at the Innovator and Early Adopter stages because those operators already prioritize resident experience, mobility readiness, and amenity differentiation. That is where fast deployment and measurable traction happen first.
+      </p>
+      <div class="adoption-grid">
+        <div class="adoption-stage">
+          <div class="adoption-stage-label">Stage 1</div>
+          <div class="adoption-stage-title">Innovators</div>
+          <div class="adoption-stage-copy">Multifamily developers, smart-city planners, and PropTech innovators building next-generation living environments.</div>
+        </div>
+        <div class="adoption-stage">
+          <div class="adoption-stage-label">Stage 2</div>
+          <div class="adoption-stage-title">Early Adopters</div>
+          <div class="adoption-stage-copy">Class A property managers, amenity directors, and mixed-use developers focused on retention and premium resident experience.</div>
+        </div>
+        <div class="adoption-stage">
+          <div class="adoption-stage-label">Stage 3</div>
+          <div class="adoption-stage-title">Early Majority</div>
+          <div class="adoption-stage-copy">Institutional operators, smart districts, and campus mobility directors scaling proven infrastructure models.</div>
+        </div>
+        <div class="adoption-stage">
+          <div class="adoption-stage-label">Stage 4</div>
+          <div class="adoption-stage-title">Majority</div>
+          <div class="adoption-stage-copy">C-store operators and retail chains adopting once mobility-first retail economics are validated at scale.</div>
+        </div>
+        <div class="adoption-stage">
+          <div class="adoption-stage-label">Stage 5</div>
+          <div class="adoption-stage-title">Late Majority</div>
+          <div class="adoption-stage-copy">Traditional landlords and legacy operators entering after autonomous amenities become expected baseline infrastructure.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="consumer-icp">
+      <div class="section-kicker">Demand-Side ICP</div>
+      <h2 class="section-title">The EVA Consumer: The Urgent-Need Buyer</h2>
+      <p class="section-lead">
+        EVA serves two sides of the market: supply-side adopters who deploy the infrastructure, and demand-side consumers who use it. The urgent-need buyer is the demand engine that drives SKU velocity, repeat behavior, and amenity value.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">Who this buyer is</h3>
+          <ul>
+            <li>Needs something now, not tomorrow.</li>
+            <li>Prioritizes proximity, speed, and personal safety.</li>
+            <li>Makes fast purchase decisions when essentials run out.</li>
+            <li>Shows up across multifamily, mixed-use districts, campuses, hotels, and walkable micro-districts.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">What urgent need looks like</h3>
+          <ul>
+            <li>Baby items, pet items, and hygiene essentials needed immediately.</li>
+            <li>OTC meds, late-night snacks, and household basics after normal store hours.</li>
+            <li>Emergency items when waiting or driving is not acceptable.</li>
+            <li>Small, frequent baskets that compound into predictable demand.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:22px;">
+        <div class="card">
+          <h3 class="card-title">Why traditional retail breaks here</h3>
+          <ul>
+            <li>Travel time turns a 3-minute need into a 30-minute problem.</li>
+            <li>Store entry friction and checkout delays kill urgency.</li>
+            <li>Staffing limits and limited hours block access when demand spikes.</li>
+            <li>Safety concerns increase at night, exactly when urgent needs often happen.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Why this makes EVA inevitable</h3>
+          <ul>
+            <li>Urgent-need behavior is universal, frequent, and location-agnostic.</li>
+            <li>When EVA is placed where people live and move, usage follows naturally.</li>
+            <li>This is why the multifamily pilot produces clear signal early.</li>
+            <li>It directly validates the adoption-curve strategy from Innovators to the broader market.</li>
+          </ul>
+          <p class="tagline">Supply-side adoption deploys EVA. Urgent-need buyers make EVA indispensable.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="phase-0-pilot">
+      <div class="section-kicker">Pilot Validation</div>
+      <h2 class="section-title">Phase 0 Pilot: 400-Unit Multifamily Complex — Houston, TX</h2>
+      <p class="section-lead">
+        Phase 0 validates resident demand inside a controlled mobility environment where amenity usage, repeat behavior, and time-of-day demand can be measured with high signal quality.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">What Phase 0 validates</h3>
+          <ul>
+            <li>Resident pull for instant essentials in a dense, high-frequency environment.</li>
+            <li>Amenity value tied to retention, satisfaction, and property differentiation.</li>
+            <li>Operational reliability in private-road and managed-access conditions.</li>
+            <li>Hyper-local demand curves by hour, basket type, and SKU mix.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Why this environment comes first</h3>
+          <ul>
+            <li>Multifamily offers immediate user density without long permitting timelines.</li>
+            <li>Property partners provide clear deployment boundaries and safety controls.</li>
+            <li>Mobility infrastructure can be instrumented before broad public-road expansion.</li>
+            <li>Fast feedback loops accelerate progression to autonomous amenity scale.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="pilot-highlight">
+        Phase 0 is not just demand validation. It is adoption validation inside the exact customer segment that drives the Innovator and Early Adopter phases.
+      </p>
+    </section>
+
+    <!-- Problem: Systemic Pain -->
+    <section id="problem">
+
+      <div class="problem-tier">
+        <div class="section-kicker">Systemic Pain</div>
+        <h2 class="section-title">Demand is dynamic. Infrastructure is still fixed to static retail assumptions.</h2>
+        <p class="section-lead">
+          In multifamily and mixed-use environments, demand appears in short windows and tight radiuses. Static stores and delivery-first models miss those windows, especially at night and in high-density access zones.
+        </p>
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title">Where gaps appear first</h3>
+            <ul>
+              <li>Mobility gaps: people can reach demand points, but demand points cannot move to people.</li>
+              <li>Amenity gaps: properties compete on amenities, but essentials access is still underbuilt.</li>
+              <li>Late-night access gaps: urgent needs spike when nearby options are closed or too far.</li>
+              <li>Hyper-local unmet need pockets persist block by block despite overall retail density.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Why mobility-first retail wins</h3>
+            <ul>
+              <li>It meets demand where residents already are instead of forcing new store build-outs.</li>
+              <li>It aligns with multifamily adoption cycles and property-level amenity strategy.</li>
+              <li>It captures urgent trips that conventional formats leave unserved.</li>
+              <li>It builds a mobility infrastructure layer that scales across property portfolios.</li>
+            </ul>
+            <p class="tagline">The pain is not demand. The pain is static infrastructure.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-tier">
+        <div class="section-kicker">Supporting Evidence</div>
+        <h2 class="section-title">C-store operator pressure confirms the same structural bottleneck.</h2>
+        <p class="section-lead">
+          Operator pain is real, but it is evidence of the broader issue. Labor strain, remodel drag, and store-count ceilings show why fixed-site retail cannot expand at the speed of local demand.
+        </p>
+        <div class="how-steps">
+          <!-- Step 1 -->
+          <div class="how-step">
+            <div class="how-step-num">1</div>
+            <div class="how-step-icon">
+              <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+                <circle cx="26" cy="18" r="8" stroke="#ff3d6f" stroke-width="2.5"/>
+                <path d="M12 44c0-7.7 6.3-14 14-14s14 6.3 14 14" stroke="#ff3d6f" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="40" cy="12" r="6" fill="rgba(255,61,111,0.15)" stroke="#ff3d6f" stroke-width="2"/>
+                <path d="M37.5 12h5M40 9.5v5" stroke="#ff3d6f" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="how-step-title">Labor and shift instability</div>
+            <div class="how-step-desc">Night coverage, churn, and manager fatigue increase cost while reducing service reliability.</div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="how-step-arrow">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M6 14h16M16 8l6 6-6 6" stroke="#35e28a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="how-step">
+            <div class="how-step-num">2</div>
+            <div class="how-step-icon">
+              <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+                <rect x="10" y="26" width="32" height="18" rx="2" stroke="#4fb3ff" stroke-width="2.5"/>
+                <path d="M10 26l6-14h20l6 14" stroke="#4fb3ff" stroke-width="2.5" stroke-linejoin="round"/>
+                <line x1="10" y1="26" x2="42" y2="26" stroke="#4fb3ff" stroke-width="2"/>
+                <rect x="20" y="33" width="12" height="11" rx="1" stroke="#4fb3ff" stroke-width="2"/>
+                <circle cx="38" cy="10" r="7" stroke="#35e28a" stroke-width="2.5"/>
+                <circle cx="38" cy="10" r="2.5" fill="#35e28a"/>
+                <path d="M38 17v5" stroke="#35e28a" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="how-step-title">Remodel and expansion drag</div>
+            <div class="how-step-desc">Remodel cycles and new-site timelines delay response to demand shifts and compress margin.</div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="how-step-arrow">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M6 14h16M16 8l6 6-6 6" stroke="#35e28a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="how-step">
+            <div class="how-step-num">3</div>
+            <div class="how-step-icon">
+              <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+                <path d="M18 22v-5a8 8 0 0116 0v5" stroke="#35e28a" stroke-width="2.5" stroke-linecap="round"/>
+                <rect x="10" y="22" width="32" height="24" rx="3" stroke="#35e28a" stroke-width="2.5"/>
+                <path d="M19 34l6 6 10-10" stroke="#35e28a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="how-step-title">Store-count ceilings</div>
+            <div class="how-step-desc">Many operators plateau at 5-25 stores, confirming a model-level scaling constraint.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Insight -->
+    <section id="insight">
+      <div class="section-kicker">Insight</div>
+      <h2 class="section-title">EVA turns urgent-need retail into scalable infrastructure.</h2>
+      <p class="section-lead">
+        Urgent-need retail is ideal for autonomy: predictable baskets, repeat local routes, and clear SLA logic. EVA uses that structure to cut labor dependence, speed expansion, and increase throughput.
+      </p>
+    </section>
+
+    <!-- Solution introduction -->
+    <section id="solution-intro">
+      <div class="section-kicker">The Solution</div>
+      <h2 class="section-title">EVA exists to close that gap.</h2>
+      <p class="section-lead">
+        Demand is dynamic. Infrastructure is fixed, expensive, and labor-dependent. EVA reduces retail-level inflation by stripping labor, lease, utility, shrink, and last-mile drag.
+      </p>
+    </section>
+
+    <!-- EVA Stack overview -->
+    <section id="what-eva-is">
+      <aside class="hero-right">
+        <div class="hero-grid-label">The EVA Stack</div>
+        <div class="eva-equation"><span>EVA Mart</span> + Restock + DropShift + Cloud</div>
+        <p class="eva-meaning"><strong>EVA = Environment • Vehicle • Automation</strong><br/>A platform that combines dynamic environments, mobile amenity vehicles, and autonomous automation to deliver hyper-local retail infrastructure.</p>
+        <div class="pillars-row-2">
+          <div class="pillar-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
+              <rect x="3" y="4" width="18" height="16" rx="2" stroke="#35e28a" stroke-width="2"/>
+              <line x1="3" y1="9" x2="21" y2="9" stroke="#35e28a" stroke-width="1.5"/>
+              <line x1="8" y1="14" x2="16" y2="14" stroke="#35e28a" stroke-width="1.5"/>
+              <line x1="8" y1="17" x2="13" y2="17" stroke="#35e28a" stroke-width="1.5"/>
+            </svg>
+            <div class="pillar-label">Wedge Product</div>
+            <div class="pillar-name">EVA Mart</div>
+            <div class="pillar-desc">Instant access to urgent-need essentials. 24/7.</div>
+          </div>
+          <div class="pillar-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
+              <circle cx="12" cy="5" r="3" stroke="#4fb3ff" stroke-width="2"/>
+              <circle cx="5" cy="19" r="2" stroke="#4fb3ff" stroke-width="2"/>
+              <circle cx="19" cy="19" r="2" stroke="#4fb3ff" stroke-width="2"/>
+              <line x1="12" y1="8" x2="5" y2="17" stroke="#4fb3ff" stroke-width="1.5"/>
+              <line x1="12" y1="8" x2="19" y2="17" stroke="#4fb3ff" stroke-width="1.5"/>
+            </svg>
+            <div class="pillar-label">Supply Engine</div>
+            <div class="pillar-name">EVA Restock</div>
+            <div class="pillar-desc">Keeps every node stocked for urgent demand.</div>
+          </div>
+          <div class="pillar-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="#e84aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="pillar-label">Last Mile</div>
+            <div class="pillar-name">EVA DropShift</div>
+            <div class="pillar-desc">Rapid restock when demand spikes. 2–8 hr cycles.</div>
+          </div>
+          <div class="pillar-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-bottom:6px;opacity:0.8;">
+              <circle cx="12" cy="12" r="9" stroke="#ffb347" stroke-width="2"/>
+              <path d="M12 8v4l3 3" stroke="#ffb347" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div class="pillar-label">Orchestration</div>
+            <div class="pillar-name">EVA Cloud</div>
+            <div class="pillar-desc">Routes every node, every order, in real time.</div>
+          </div>
+        </div>
+        <p class="hero-bottom-text">
+          Four interlocking layers. One <span>urgent-need fulfillment network.</span>
+        </p>
+      </aside>
+    </section>
+
+    <!-- The Platform -->
+    <section id="platform">
+      <div class="section-kicker">The Platform</div>
+      <h2 class="section-title">Four products. One urgent-need network.</h2>
+      <p class="section-lead">
+        EVA is not a single product — it's a stacked infrastructure play. Each layer keeps essentials available and affordable when people need them most.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">EVA Mart — Autonomous Retail Node</h3>
+          <p class="card-subtitle">Instant access to essentials, where people already are.</p>
+          <ul>
+            <li>A mobile, autonomous micro-store that sits inside neighborhoods — so when people run out, they can grab what they need in minutes.</li>
+            <li>Walk-up or drive-up access. No delivery fees. No minimum order. No wait.</li>
+            <li>Sells dry goods, essentials, paper goods, cleaning supplies, snacks, and everyday urgent-need items.</li>
+            <li>Priced below general retail — wholesale economics passed directly to residents.</li>
+            <li>Operates 24/7 with zero staff.</li>
+          </ul>
+          <p class="tagline">Need it now? It's right there. Cheaper than anywhere else nearby.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">EVA Restock — Hyper-Local Wholesale Engine</h3>
+          <p class="card-subtitle">Automates sourcing so essentials are always available.</p>
+          <ul>
+            <li>Connects to wholesale-only distributors across the Houston metro.</li>
+            <li>Routes restock jobs based on price, distance, SLA, and availability.</li>
+            <li>Integrates with suppliers via API, EDI, email, or manual intake.</li>
+            <li>Ensures essentials are always available when people need them most.</li>
+            <li>Generates a second revenue stream through logistics margin.</li>
+          </ul>
+          <p class="tagline">Smarter sourcing. Faster restock. Essentials always ready.</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:22px;">
+        <div class="card">
+          <h3 class="card-title">EVA DropShift — Last-Mile Gig Delivery Mesh</h3>
+          <p class="card-subtitle">Restocks nodes quickly when suppliers don't integrate directly.</p>
+          <ul>
+            <li>Gig drivers pick up wholesale orders and deliver directly to EVA Mart nodes.</li>
+            <li>Activates when distributor delivery is unavailable or too slow.</li>
+            <li>Guarantees 2–8 hour restock cycles so urgent-need demand is never unmet.</li>
+            <li>Generates a third revenue stream through delivery margin.</li>
+            <li>Scales on demand using Houston's existing gig driver network.</li>
+          </ul>
+          <p class="tagline">Always stocked. Always on. No single supplier dependency.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">EVA Cloud — Orchestration + Routing Layer</h3>
+          <p class="card-subtitle">Keeps every node stocked and ready for urgent-need demand.</p>
+          <ul>
+            <li>Manages inventory, restock logic, and the supplier graph in real time.</li>
+            <li>Routes DropShift jobs and enforces SLAs so nodes never go empty.</li>
+            <li>Provides dashboards for property managers and EVA operators.</li>
+            <li>Runs the autonomy logic for future EVA ADV vehicles.</li>
+            <li>Foundation for scaling urgent-need coverage beyond the Houston metro.</li>
+          </ul>
+          <p class="tagline">One cloud. Every node. Always ready.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Space Technology Infrastructure -->
+    <section id="space-infrastructure" style="margin-top: 56px;">
+      <div class="section-kicker">Infrastructure Backbone</div>
+      <h2 class="section-title">Space technology powers global-scale coordination.</h2>
+      <p class="section-lead">
+        EVA's distributed network relies on two critical space-enabled capabilities: real-time orbital insights for demand forecasting and continuous satellite communications for operational resilience.
+      </p>
+
+      <figure class="space-banner" aria-label="Starlink and orbital infrastructure banner">
+        <img src="starlink_banner.png" alt="Night sky above EVA autonomous units representing orbital intelligence and Starlink-powered communications" />
+        <figcaption class="space-banner-caption">Orbital intelligence + Starlink connectivity keep the EVA network online 24/7.</figcaption>
+      </figure>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">Orbital Intelligence</h3>
+          <p class="card-subtitle">Real-time Earth observation for demand signals.</p>
+          <ul>
+            <li>Satellite imagery feeds operational intelligence on foot traffic, dwell time, and demand patterns in real time.</li>
+            <li>Enables predictive restock scheduling — know what neighborhoods need before urgent demand spikes.</li>
+            <li>Validates node placement ROI by confirming neighborhood adoption and foot traffic patterns.</li>
+            <li>Provides asset tracking and visibility across the entire EVA network fleet.</li>
+            <li>Foundation for scaling to new cities with data-driven site selection.</li>
+          </ul>
+          <p class="tagline">See demand. Predict need. Optimize placement.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Starlink — Steady Communications Layer</h3>
+          <p class="card-subtitle">Reliable connectivity for every node, everywhere.</p>
+          <ul>
+            <li>Satellite-backed internet ensures EVA nodes stay connected even during local network outages.</li>
+            <li>Low-latency communication for real-time inventory updates and SLA compliance.</li>
+            <li>Enables 24/7 autonomous operation without dependency on terrestrial cell coverage.</li>
+            <li>Backup redundancy — if ground infrastructure fails, Starlink keeps logistics flowing.</li>
+            <li>Foundation for expanding EVA network beyond Houston to underserved rural and remote neighborhoods.</li>
+          </ul>
+          <p class="tagline">Always connected. Never isolated. Network resilience built in.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVA Mart Detail -->
+    <section id="evamart">
+      <div class="section-kicker">Wedge Product</div>
+      <h2 class="section-title">EVA Mart — Urgent-need essentials, right where you are.</h2>
+      <p class="section-lead">
+        EVA Mart is a mobile, autonomous micro-store placed where people already are. When essentials run out, residents can restock in minutes without delivery fees or a supermarket trip.
+      </p>
+
+      <div class="pods-layout">
+        <div class="card">
+          <h3 class="card-title">Why residents reach for EVA Mart first</h3>
+          <ul>
+            <li>Walk up or drive up with no lines or wasted time.</li>
+            <li>Pre-order in the app and pick up in minutes.</li>
+            <li>Priced below local general retail using wholesale economics.</li>
+            <li>No delivery fees, tips, minimums, or surge pricing.</li>
+            <li>Core urgent-need essentials stay in stock.</li>
+            <li>Available at 2am at better local pricing.</li>
+          </ul>
+          <p class="tagline">Need it now? Walk up, grab it, go. No fees. No wait.</p>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+            <span class="pods-badge">Dry goods</span>
+            <span class="pods-badge">Cleaning supplies</span>
+            <span class="pods-badge">Paper goods</span>
+            <span class="pods-badge">Snacks</span>
+            <span class="pods-badge">Household essentials</span>
+          </div>
+        </div>
+
+        <aside class="pods-visual" aria-label="EVA Mart mobile unit concept">
+          <div class="pods-visual-title">Phase 1 Deployment</div>
+          <div class="pods-visual-main">EVA Mart — Mobile Autonomous Retail Unit</div>
+          <img src="eva_mart_mobile.png" alt="EVA Mart mobile unit with arm robots stocking shelves" style="width:100%;height:auto;border-radius:12px;margin-bottom:16px;margin-top:8px;box-shadow:0 0 20px rgba(53,226,138,0.2);">
+          <div class="pods-visual-sub">
+            EVA Mart is a self-contained mobile unit, not a fixed store. It moves to urgent-demand zones while arm robots handle restocking and dispensing 24/7.
+          </div>
+          <div class="pods-drive-strip">
+            <span class="pods-drive-dot"></span>
+            <span>Pre-order on the app → drive up → arm robot fulfills. Instant access. No fees. No wait.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Phase 1 Pilot -->
+    <section id="pilot">
+      <div class="section-kicker">Phase 1</div>
+      <h2 class="section-title">WAEV Taylor-Dunn Pilot — The bridge to full autonomy.</h2>
+      <p class="section-lead">
+        Before building its own Autonomous Delivery Vehicle, EVA validates every core assumption on a proven industrial platform. Phase 1 is about data, not hardware.
+      </p>
+
+      <div class="workflow-steps">
+        <div class="step-card">
+          <div class="step-index">Validate 1</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;opacity:0.7;">
+            <circle cx="16" cy="12" r="6" stroke="#35e28a" stroke-width="2"/>
+            <path d="M8 26c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#35e28a" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div class="step-title">Resident Adoption</div>
+          <p class="step-desc">Target: 3+ purchases per active user per week. Track repeat rate, basket size, and time-of-day patterns in the first 30 days.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-index">Validate 2</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;opacity:0.7;">
+            <rect x="6" y="6" width="20" height="20" rx="2" stroke="#4fb3ff" stroke-width="2"/>
+            <line x1="10" y1="16" x2="22" y2="16" stroke="#4fb3ff" stroke-width="2"/>
+            <line x1="16" y1="10" x2="16" y2="22" stroke="#4fb3ff" stroke-width="2"/>
+          </svg>
+          <div class="step-title">SKU Velocity</div>
+          <p class="step-desc">Target: identify the top 20 SKUs driving 80% of revenue within 30 days. Use results to optimize neighborhood catalogs.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-index">Validate 3</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;opacity:0.7;">
+            <circle cx="16" cy="16" r="9" stroke="#e84aff" stroke-width="2"/>
+            <path d="M16 10v6l4 2" stroke="#e84aff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div class="step-title">Restock Cycles</div>
+          <p class="step-desc">Target: sub-4 hour average restock time. Confirm a 2-8 hour SLA across distributor and DropShift channels.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-index">Validate 4</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;opacity:0.7;">
+            <path d="M6 16h20M16 6l10 10-10 10" stroke="#ffb347" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="step-title">Wholesale Sourcing</div>
+          <p class="step-desc">Target: qualify 5+ Houston distributors with confirmed pricing, SLA, and integration. Establish EVA Restock as the supplier routing layer.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-index">Validate 5</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;opacity:0.7;">
+            <circle cx="16" cy="16" r="9" stroke="#35e28a" stroke-width="2"/>
+            <path d="M12 16l3 3 5-5" stroke="#35e28a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="step-title">DropShift Fallback</div>
+          <p class="step-desc">Target: under 2-hour driver response with 90%+ job acceptance. Confirm per-delivery economics support positive margin at scale.</p>
+        </div>
+      </div>
+
+      <div class="duo-footer" style="margin-top:20px;">
+        <strong>Phase 1 → EVA ADV:</strong>&nbsp;
+        Everything proven on the WAEV Taylor-Dunn platform becomes the blueprint for EVA's Autonomous Delivery Vehicle.
+        <br/>
+        <span>This is not a prototype. It is a live, revenue-generating proof of concept.</span>
+      </div>
+    </section>
+
+    <section id="version-roadmap">
+      <div class="section-kicker">EVA Version Roadmap</div>
+      <h2 class="section-title">A staged path from traction to production-grade autonomy.</h2>
+      <p class="section-lead">
+        EVA advances through deliberate versions so each stage compounds validated data, autonomy capability, and deployment readiness.
+      </p>
+      <div class="version-roadmap">
+        <div class="version-card">
+          <div class="version-stage">Version 0.0</div>
+          <div class="version-title">EV Test Unit</div>
+          <div class="version-desc">Traction capture, resident UX validation, and SKU demand-curve learning in controlled deployments.</div>
+        </div>
+        <div class="version-card">
+          <div class="version-stage">Version 1.0</div>
+          <div class="version-title">DBW Test Unit</div>
+          <div class="version-desc">Drive-by-wire architecture, teleop workflows, and autonomy plumbing integration across core systems.</div>
+        </div>
+        <div class="version-card">
+          <div class="version-stage">Version 1.5</div>
+          <div class="version-title">ADV Test Unit</div>
+          <div class="version-desc">Perrone ADV stack enabling private-road autonomy, operational safety loops, and route-level reliability.</div>
+        </div>
+        <div class="version-card">
+          <div class="version-stage">Version 2.0</div>
+          <div class="version-title">Future Body ADV</div>
+          <div class="version-desc">Production-grade autonomous retail robot designed for scaled deployment across multifamily and mixed-use portfolios.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cost-ladder">
+      <div class="section-kicker">Cost Ladder</div>
+      <h2 class="section-title">Capital scales with capability by design.</h2>
+      <p class="section-lead">
+        EVA uses a stepwise cost ladder so each investment stage buys measurable operational capability and reduces downstream autonomy risk.
+      </p>
+      <div class="cost-ladder">
+        <div class="cost-item">
+          <div class="cost-value">$250K</div>
+          <div class="cost-label">EV Test Unit</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-value">$400K</div>
+          <div class="cost-label">DBW Unit</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-value">$750K</div>
+          <div class="cost-label">ADV Unit (Perrone at approximately $350K)</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-value">$1.1M</div>
+          <div class="cost-label">Full ADV Future Body</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Revenue Model -->
+    <section id="revenue">
+      <div class="section-kicker">Business Model</div>
+      <h2 class="section-title">Three revenue streams today. Four tomorrow.</h2>
+      <p class="section-lead">
+        EVA earns on every transaction across the stack — from the shelf to the supplier to the driver. No single point of failure. No dependency on one margin.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">Stream 1 — Retail Margin</h3>
+          <p class="card-subtitle">Source: EVA Mart</p>
+          <ul>
+            <li>EVA buys at wholesale and sells at a margin below general retail.</li>
+            <li>Residents get a better price. EVA keeps the spread.</li>
+            <li>High-frequency, high-velocity purchases compound daily.</li>
+            <li>Scales linearly with every unit deployed.</li>
+          </ul>
+          <p class="tagline">Every SKU sold is a margin event.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Stream 2 — Logistics Margin</h3>
+          <p class="card-subtitle">Source: EVA Restock</p>
+          <ul>
+            <li>EVA routes restock jobs through its supplier network.</li>
+            <li>Earns a margin on every wholesale order routed and fulfilled.</li>
+            <li>Better routing equals lower cost equals higher margin over time.</li>
+            <li>Supplier network deepens with every EVA Mart deployed.</li>
+          </ul>
+          <p class="tagline">The supply chain is a product, not a cost center.</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:22px;">
+        <div class="card">
+          <h3 class="card-title">Stream 3 — Delivery Margin</h3>
+          <p class="card-subtitle">Source: EVA DropShift</p>
+          <ul>
+            <li>EVA pays gig drivers a fixed rate per delivery job.</li>
+            <li>Charges a delivery margin on top for last-mile fulfillment.</li>
+            <li>Activates on demand — zero salaried driver overhead.</li>
+            <li>Covers fallback and primary delivery across underserved routes.</li>
+          </ul>
+          <p class="tagline">Gig economics. Infrastructure margins.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Stream 4 — Autonomy Margin</h3>
+          <p class="card-subtitle">Source: EVA ADV (Future)</p>
+          <ul>
+            <li>As EVA ADV replaces gig drivers on high-density routes, delivery cost approaches zero.</li>
+            <li>Full autonomy margin is captured on every delivery run.</li>
+            <li>EVA Cloud handles routing, SLA enforcement, and vehicle dispatch.</li>
+            <li>Phase 1 operational data is the foundation for ADV deployment.</li>
+          </ul>
+          <p class="tagline">The same network. Zero marginal delivery cost.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Now -->
+    <section id="why-now">
+      <div class="section-kicker">Why Now</div>
+      <h2 class="section-title">The moment for neighborhood retail is here.</h2>
+      <p class="section-lead">
+        The conditions that make EVA necessary and possible are converging now.
+      </p>
+
+      <div class="why-now-grid">
+        <div class="why-now-item">
+          <strong>Delivery fees are too high</strong>
+          25-40% markup before tip. Residents are exhausted, and demand is ready for a better option.
+        </div>
+        <div class="why-now-item">
+          <strong>Instant retail doesn't exist at the neighborhood level</strong>
+          No existing solution combines speed, affordability, and convenience in one place.
+        </div>
+        <div class="why-now-item">
+          <strong>Amazon is too slow</strong>
+          2.5-day average fulfillment is fine for planned buys, not urgent needs.
+        </div>
+        <div class="why-now-item">
+          <strong>People want instant access</strong>
+          Demand is already there, but no one is building local, affordable instant retail.
+        </div>
+        <div class="why-now-item">
+          <strong>Robotics costs have dropped</strong>
+          Autonomous retail tech is now affordable at small scale, and EVA is positioned to use it first.
+        </div>
+        <div class="why-now-item">
+          <strong>Neighborhood retail is broken</strong>
+          No infrastructure is both instant and below convenience pricing. That gap is EVA's market.
+        </div>
+      </div>
+    </section>
+
+    <!-- Where We Are Today -->
+    <section id="today">
+      <div class="section-kicker">Where We Are Today</div>
+      <h2 class="section-title">Real progress. Not just a deck.</h2>
+      <p class="section-lead">
+        EVA is not an idea. It is an operating company in build phase with real momentum.
+      </p>
+      <ul class="status-list">
+        <li class="status-item done">
+          <span class="status-check">✓</span>
+          Enterprise software 95% complete
+        </li>
+        <li class="status-item done">
+          <span class="status-check">✓</span>
+          Architecture locked
+        </li>
+        <li class="status-item progress">
+          <span class="status-check">→</span>
+          Supplier network forming
+        </li>
+        <li class="status-item progress">
+          <span class="status-check">→</span>
+          First EVA Mart unit in build phase
+        </li>
+        <li class="status-item progress">
+          <span class="status-check">→</span>
+          Houston deployment plan defined
+        </li>
+      </ul>
+    </section>
+
+    <!-- What We're Raising -->
+    <section id="raising">
+      <div class="section-kicker">The Ask</div>
+      <h2 class="section-title">What we're raising.</h2>
+      <p class="section-lead">
+        We are raising an angel round to deploy the first EVA Mart in Houston.
+      </p>
+      <div class="grid-2" style="margin-top:4px;">
+        <div class="card">
+          <h3 class="card-title">This round funds</h3>
+          <ul>
+            <li>First EVA Mart unit build</li>
+            <li>Houston deployment and site setup</li>
+            <li>SKU selection and behavior validation</li>
+            <li>Supplier network integration</li>
+            <li>Early traction data and unit economics proof</li>
+          </ul>
+          <p class="tagline">One unit. Real data. The foundation for everything that follows.</p>
+          <div style="margin-top:18px;">
+            <button class="btn-primary" type="button" onclick="window.location.href='mailto:tom.fanara@eva-systems.net?subject=Investor Deck Request'">Request Investor Deck</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Why angel, not seed VC</h3>
+          <ul>
+            <li>This is validation capital — proving the unit model before scaling.</li>
+            <li>Angels move faster and understand early-stage hardware deployment.</li>
+            <li>The seed VC round comes after Phase 1 data is in hand.</li>
+            <li>You are not betting on a deck — you are funding proof.</li>
+          </ul>
+          <p class="tagline">Angel capital now. Seed round to follow once the data is real.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Meet the Founder -->
+    <section id="about">
+      <div class="section-kicker">Meet the Founder</div>
+      <h2 class="section-title">Built by someone who lived the problem.</h2>
+      <p class="section-lead">
+        EVA Systems is a Houston-based startup building the infrastructure layer for autonomous neighborhood retail. Founded in 2025, EVA is designing the full stack — from the retail node to the supply engine to the delivery mesh — under one roof.
+      </p>
+
+      <p class="founder-quote">
+        "I built EVA because I've lived the problem. When people run out of essentials, every option is slow, expensive, or inconvenient. I'm building EVA to fix that — starting in Houston."
+      </p>
+
+      <div class="card leader-card" style="max-width:560px;">
+        <div class="leader-name">Thomas J. Fanara</div>
+        <div class="leader-title">Founder &amp; CEO — Platform Architecture &amp; Vision</div>
+        <ul>
+          <li>Architect of the EVA platform, business model, and go-to-market strategy.</li>
+          <li>Designed the EVA Mart, Restock, DropShift, and Cloud stack from the ground up.</li>
+          <li>Background in software and hardware systems design, supply chain automation, and autonomous retail.</li>
+          <li>Leads product vision, investor relations, and platform roadmap.</li>
+        </ul>
+      </div>
+
+      <div class="duo-footer" style="max-width:560px;">
+        <strong>Founder-led.</strong>&nbsp;
+        EVA is built by the person who designed it — with full ownership of vision, architecture, and execution.
+        <br/>
+        <span>Building the missing infrastructure for urgent-need fulfillment.</span>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-kicker">Get In Touch</div>
+      <h2 class="section-title">Invest. Partner. Deploy.</h2>
+      <p class="section-lead">
+        EVA is raising a seed round and deploying its first urgent-need nodes in the Houston metro. Investors, property owners, distributors, and gig drivers each have a place in the EVA network.
+      </p>
+
+      <div class="grid-2" style="margin-top:4px;">
+        <div class="card">
+          <h3 class="card-title">Investors</h3>
+          <p class="card-subtitle">Angel round open now.</p>
+          <ul>
+            <li>Request the full investor deck and financial model.</li>
+            <li>Review Phase 1 pilot plan and unit economics.</li>
+            <li>Meet the founder.</li>
+          </ul>
+          <div style="margin-top:16px;">
+            <button class="btn-primary" type="button" onclick="window.location.href='mailto:tom.fanara@eva-systems.net?subject=Investor Deck Request'">Request Investor Deck</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Property Owners &amp; Operators</h3>
+          <p class="card-subtitle">EVA nodes can be deployed on properties, campuses, and logistics hubs to serve urgent-need behavior where people live and work.</p>
+          <ul>
+            <li>Give tenants 24/7 access to essentials without adding staff or building a full store.</li>
+            <li>No upfront cost, lease-heavy footprint, or staffing overhead.</li>
+            <li>Earn passive revenue on every resident transaction.</li>
+            <li>Increase satisfaction, dwell time, and retention with an on-site amenity people use.</li>
+          </ul>
+          <div style="margin-top:16px;">
+            <button class="btn-primary" type="button" onclick="window.location.href='mailto:tom.fanara@eva-systems.net?subject=Property Partner Inquiry'">Partner With Us</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:22px;">
+        <div class="card">
+          <h3 class="card-title">Wholesale Distributors</h3>
+          <p class="card-subtitle">Join the EVA Restock supplier network.</p>
+          <ul>
+            <li>Get routed restock jobs from EVA Mart nodes across the Houston metro.</li>
+            <li>Integrate via API, EDI, email, or manual intake — your choice.</li>
+            <li>Grow a predictable, recurring wholesale revenue channel.</li>
+          </ul>
+          <div style="margin-top:16px;">
+            <button class="btn-primary" type="button" onclick="window.location.href='mailto:tom.fanara@eva-systems.net?subject=Supplier Network Inquiry'">Join the Network</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Gig Drivers</h3>
+          <p class="card-subtitle">Deliver for EVA DropShift.</p>
+          <ul>
+            <li>Pick up wholesale orders from local distributors and deliver to EVA Mart nodes.</li>
+            <li>Fixed rate per job. No surge. No algorithm games.</li>
+            <li>Flexible hours. Houston metro routes only.</li>
+          </ul>
+          <div style="margin-top:16px;">
+            <button class="btn-primary" type="button" onclick="window.location.href='mailto:tom.fanara@eva-systems.net?subject=DropShift Driver Inquiry'">Drive for EVA</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="duo-footer" style="margin-top:22px;text-align:center;">
+        <strong>Contact:</strong>&nbsp;
+        <a href="mailto:tom.fanara@eva-systems.net" style="color:var(--accent-cool);">tom.fanara@eva-systems.net</a>
+        &nbsp;·&nbsp;
+        <span>Houston, TX</span>
+        &nbsp;·&nbsp;
+        <span>eva-systems.net</span>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> EVA Systems, LLC. All rights reserved.</div>
+      <div>EVA Mart · EVA Restock · EVA DropShift · EVA Cloud — Urgent-Need Fulfillment Infrastructure.</div>
+      <div><a href="mailto:tom.fanara@eva-systems.net">tom.fanara@eva-systems.net</a> · Houston, TX</div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const introVideo = document.getElementById("intro-video");
+
+    if (introVideo) {
+      const tryPlayIntroVideo = () => {
+        const playPromise = introVideo.play();
+
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {
+          });
+        }
+      };
+
+      if (introVideo.readyState >= 2) {
+        tryPlayIntroVideo();
+      } else {
+        introVideo.addEventListener("canplay", tryPlayIntroVideo, { once: true });
+      }
+    }
+  </script>
+</body>
+</html>
