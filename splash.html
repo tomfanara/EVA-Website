@@ -54,7 +54,10 @@
     }
 
     .page-badge {
-      display: inline-block;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
       margin: 0;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.24);
@@ -66,6 +69,22 @@
       font-weight: 620;
       padding: 9px 16px;
       backdrop-filter: blur(6px);
+    }
+
+    .page-badge-title {
+      display: block;
+      font-size: calc(1em + 3px);
+      line-height: 1.1;
+    }
+
+    .page-badge-sub {
+      display: block;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      font-weight: 540;
+      text-transform: none;
+      color: #9aa0b5;
+      line-height: 1.2;
     }
 
     .page-subtitle {
@@ -88,7 +107,7 @@
       display: grid;
       place-items: center;
       text-align: center;
-      transform: translateY(38px);
+      transform: translateY(41px);
     }
 
     .app-shell {
@@ -272,6 +291,24 @@
       box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), inset 0 -35px 60px rgba(64, 93, 130, 0.22);
     }
 
+    .select-visual--teaser {
+      background: #05070c;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .select-visual--teaser::before,
+    .select-visual--teaser::after {
+      display: none;
+    }
+
+    .select-teaser-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+
     .select-visual--earth::before {
       content: "";
       position: absolute;
@@ -407,6 +444,23 @@
       background: rgba(228, 236, 250, 0.86);
       box-shadow: 0 0 6px rgba(206, 220, 245, 0.34);
       z-index: 1;
+    }
+
+    .select-coming-soon {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      z-index: 4;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      background: rgba(6, 10, 16, 0.78);
+      color: #e8edf7;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 640;
+      padding: 6px 10px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
     }
 
     .select-phase {
@@ -620,21 +674,27 @@
     }
 
     .cinematic-header--with-thumb {
-      padding-right: 214px;
-      min-height: 190px;
+      padding-right: 254px;
+      min-height: 220px;
     }
 
     .env-header-thumb {
       position: absolute;
       top: 14px;
       right: 14px;
-      width: 176px;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
+      width: 224px;
+      aspect-ratio: 16 / 10;
+      object-fit: contain;
+      object-position: center;
       border-radius: 14px;
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 10px 26px rgba(0, 0, 0, 0.46);
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(7, 10, 16, 0.92);
+    }
+
+    .env-header-thumb--earth,
+    .env-header-thumb--frontier {
+      object-fit: cover;
     }
 
     .cinematic-title {
@@ -670,6 +730,118 @@
     .env-preview-card .select-visual {
       height: 260px;
       margin-bottom: 0;
+    }
+
+    .earth-slideshow {
+      position: relative;
+      height: 260px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      overflow: hidden;
+      background: #05070c;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), inset 0 -35px 60px rgba(64, 93, 130, 0.15);
+    }
+
+    .earth-slideshow.is-empty {
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+
+    .earth-slideshow-empty {
+      display: none;
+      color: rgba(200, 207, 219, 0.8);
+      text-align: center;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      max-width: 24rem;
+    }
+
+    .earth-slideshow.is-empty .earth-slideshow-empty {
+      display: block;
+    }
+
+    .earth-slideshow-track {
+      position: absolute;
+      inset: 0;
+    }
+
+    .earth-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      background: #05070c;
+    }
+
+    .earth-slide.is-active {
+      opacity: 1;
+    }
+
+    .earth-slide-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(6, 10, 16, 0.72);
+      color: #f5f7fa;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .earth-slide-nav.prev {
+      left: 8px;
+    }
+
+    .earth-slide-nav.next {
+      right: 8px;
+    }
+
+    .earth-slide-toggle {
+      position: absolute;
+      left: 10px;
+      bottom: 8px;
+      z-index: 2;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(6, 10, 16, 0.72);
+      color: #e8edf7;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 620;
+      padding: 5px 9px;
+      cursor: pointer;
+    }
+
+    .earth-slide-dots {
+      display: none;
+    }
+
+    .earth-slide-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(210, 218, 230, 0.35);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .earth-slide-dot.is-active {
+      background: #4fb3ff;
+      box-shadow: 0 0 8px rgba(79, 179, 255, 0.6);
     }
 
     .motif {
@@ -853,7 +1025,7 @@
       .env-header-thumb {
         position: static;
         display: block;
-        width: min(100%, 260px);
+        width: min(100%, 290px);
         margin: 12px 0 0 auto;
       }
 
@@ -920,6 +1092,10 @@
         height: 190px;
       }
 
+      .earth-slideshow {
+        height: 190px;
+      }
+
       .top-nav {
         border-radius: 16px;
         align-items: flex-start;
@@ -930,7 +1106,7 @@
 </head>
 <body>
   <div class="page-header">
-    <div class="page-badge">EVA Systems, LLC</div>
+    <div class="page-badge"><span class="page-badge-title">EVA Systems, LLC</span><span class="page-badge-sub">Environmental Vehicular Autonomy</span></div>
     <p class="page-subtitle">Autonomous retail and supply infrastructure.</p>
   </div>
   <main id="app" class="app-shell"></main>
@@ -942,9 +1118,9 @@
         title: "EVA Earth",
         description: "Retail and supply infrastructure for today's built environment.",
         problem: "Dense logistics still depend on manual movement across multifamily, retail, and campus routes. Short loops create labor friction and inconsistent service windows. Operators lack precise local orchestration for constant demand variability.",
-        icp: "Operators running high-frequency, short-range logistics in structured environments. Teams focused on throughput, repeatability, and controlled deployment geography.",
-        insight: "High-density corridors reward automation first. Removing repetitive manual movement unlocks better service reliability and higher daily operational throughput.",
-        solution: "EVA Earth coordinates autonomous units, supply nodes, and terrestrial routing into one control loop. The result is faster fulfillment, cleaner telemetry, and lower motion cost per order.",
+        icp: "Operators running high-frequency, short-range logistics in structured environments, plus consumers facing urgent demand deserts in household goods, pharma, pet supplies, and baby supplies. Teams focused on throughput, repeatability, and controlled deployment geography.",
+        insight: "High-density corridors reward automation first. Removing repetitive manual movement unlocks better service reliability, lower operating costs, and higher daily operational throughput.",
+        solution: "EVA Earth coordinates autonomous units, supply nodes, and terrestrial routing into one control loop. The result is faster fulfillment, cleaner telemetry, and lower total cost per order.",
         motif: "earth"
       },
       frontier: {
@@ -952,8 +1128,8 @@
         description: "Retail and supply infrastructure for remote and underserved regions.",
         problem: "Remote pads and corridors face sparse infrastructure, dangerous movement, and limited inventory visibility. Delays and blind spots increase operational risk in off-grid conditions.",
         icp: "Operators in remote industrial or underserved regions with basic connectivity but no autonomous logistics framework.",
-        insight: "Autonomy matters most where infrastructure is weakest. Frontier logistics is often the core bottleneck, not the peripheral function.",
-        solution: "EVA Frontier extends routing, telemetry, and ruggedized supply orchestration into remote zones. The platform converts disconnected movement into a measurable, resilient operating system.",
+        insight: "Autonomy matters most where infrastructure is weakest. Frontier logistics is often the core bottleneck, not the peripheral function, and cost efficiency determines sustainability.",
+        solution: "EVA Frontier extends routing, telemetry, and ruggedized supply orchestration into remote zones. The platform converts disconnected movement into a measurable, resilient operating system with lower delivery and support costs.",
         motif: "frontier"
       },
       moon: {
@@ -961,15 +1137,16 @@
         description: "Mission-grade retail and supply infrastructure for extreme environments.",
         problem: "Lunar EVA windows are limited, dangerous, and logistics remain highly manual. Regolith and terrain hazards degrade equipment and mission velocity.",
         icp: "NASA-aligned operators, CLPS providers, and lunar mission teams requiring autonomous staging and delivery infrastructure.",
-        insight: "Mission-grade autonomy multiplies science output while reducing astronaut risk. Every minute saved from manual logistics compounds mission value.",
-        solution: "EVA Moon integrates hazard-aware planning, mission telemetry, and autonomous supply node logic for planetary operations. It establishes a repeatable logistics layer for sustained surface activity.",
+        insight: "Mission-grade autonomy multiplies science output while reducing astronaut risk. Every minute saved from manual logistics compounds mission value and lowers mission support costs.",
+        solution: "EVA Moon integrates hazard-aware planning, mission telemetry, and autonomous supply node logic for planetary operations. It establishes a repeatable logistics layer for sustained surface activity at lower recurring operational cost.",
         motif: "moon"
       }
     };
 
     const APP = {
       view: "landing",
-      env: "earth"
+      env: "earth",
+      earthSlideshowTimer: null
     };
 
     function setView(view) {
@@ -1004,9 +1181,19 @@
     }
 
     function environmentCard(key, title, subtitle, motifClass) {
+      const teaserMap = {
+        earth: { src: "EVA-Earth1.png", alt: "EVA Earth teaser" },
+        frontier: { src: "EVA-Frontier1.png", alt: "EVA Frontier teaser" }
+      };
+      const teaser = teaserMap[key];
+      const visualClass = teaser ? `${motifClass} select-visual--teaser` : motifClass;
+      const visualContent = teaser
+        ? `<img class="select-teaser-image" src="${teaser.src}" alt="${teaser.alt}" loading="lazy" />`
+        : visualNodes(key);
+
       return `
         <article class="select-card" data-env="${key}" role="button" tabindex="0" aria-label="Select ${title}">
-          <div class="select-visual ${motifClass}">${visualNodes(key)}</div>
+          <div class="select-visual ${visualClass}">${visualContent}</div>
           <div class="select-phase">Core Environment</div>
           <div class="select-title-row">
             <h3 class="card-title">${title}</h3>
@@ -1053,6 +1240,7 @@
         <span class="select-visual-dot" style="left:16%;top:24%;"></span>
         <span class="select-visual-dot small" style="left:58%;top:34%;"></span>
         <span class="select-visual-dot small" style="left:78%;top:14%;"></span>
+        <span class="select-coming-soon">Coming Soon!</span>
       `;
     }
 
@@ -1068,6 +1256,184 @@
       `;
     }
 
+    function earthSlideshowMarkup(envKey) {
+      const slideshowConfig = {
+        earth: {
+          label: "EVA Earth consumer journey",
+          prefix: "EVA-Earth"
+        },
+        frontier: {
+          label: "EVA Frontier consumer journey",
+          prefix: "EVA-Frontier"
+        }
+      };
+
+      const config = slideshowConfig[envKey] || slideshowConfig.earth;
+      const slides = Array.from({ length: 9 }, (_, idx) => `${config.prefix}${idx + 1}.png`);
+
+      return `
+        <article class="select-card env-preview-card" aria-label="${config.label} slideshow">
+          <div class="earth-slideshow" data-earth-slideshow data-slide-index="0" data-slide-total="${slides.length}">
+            <div class="earth-slideshow-track">
+              ${slides.map((src, idx) => `<img class="earth-slide ${idx === 0 ? "is-active" : ""}" src="${src}" alt="EVA Earth slide ${idx + 1}" loading="${idx === 0 ? "eager" : "lazy"}" data-slide="${idx}" />`).join("")}
+            </div>
+            <button class="earth-slide-nav prev" type="button" aria-label="Previous slide" data-slide-dir="-1">&#10094;</button>
+            <button class="earth-slide-nav next" type="button" aria-label="Next slide" data-slide-dir="1">&#10095;</button>
+            <button class="earth-slide-toggle" type="button" aria-label="Pause slideshow" data-slide-toggle="pause">Pause</button>
+            <div class="earth-slide-dots"></div>
+            <div class="earth-slideshow-empty">Slideshow images are not in the workspace yet. Add ${config.prefix}1.png through ${config.prefix}9.png to display them.</div>
+          </div>
+        </article>
+      `;
+    }
+
+    function setEarthSlide(slideshow, index) {
+      if (!slideshow) return;
+
+      const total = Number(slideshow.getAttribute("data-slide-total") || "0");
+      if (!total) return;
+
+      const next = (index + total) % total;
+      slideshow.setAttribute("data-slide-index", String(next));
+
+      slideshow.querySelectorAll("[data-slide]").forEach((slide) => {
+        const isActive = Number(slide.getAttribute("data-slide")) === next;
+        slide.classList.toggle("is-active", isActive);
+      });
+
+      slideshow.querySelectorAll("[data-slide-to]").forEach((dot) => {
+        const isActive = Number(dot.getAttribute("data-slide-to")) === next;
+        dot.classList.toggle("is-active", isActive);
+      });
+    }
+
+    function clearEarthSlideshowTimer() {
+      if (APP.earthSlideshowTimer) {
+        clearInterval(APP.earthSlideshowTimer);
+        APP.earthSlideshowTimer = null;
+      }
+    }
+
+    function initEarthSlideshow(root) {
+      clearEarthSlideshowTimer();
+
+      if (APP.view !== "environment" || (APP.env !== "earth" && APP.env !== "frontier")) {
+        return;
+      }
+
+      const slideshow = root.querySelector("[data-earth-slideshow]");
+      if (!slideshow) return;
+
+      const allSlides = Array.from(slideshow.querySelectorAll(".earth-slide"));
+      const dotsWrap = slideshow.querySelector(".earth-slide-dots");
+      const navButtons = Array.from(slideshow.querySelectorAll("[data-slide-dir]"));
+      const toggleButton = slideshow.querySelector("[data-slide-toggle]");
+
+      const waitForSlide = (img) => new Promise((resolve) => {
+        if (img.complete) {
+          resolve();
+          return;
+        }
+
+        img.addEventListener("load", resolve, { once: true });
+        img.addEventListener("error", resolve, { once: true });
+      });
+
+      Promise.all(allSlides.map(waitForSlide)).then(() => {
+        const validSlides = allSlides.filter((img) => img.naturalWidth > 0 && img.naturalHeight > 0);
+
+        allSlides.forEach((img) => {
+          if (!validSlides.includes(img)) {
+            img.style.display = "none";
+            img.classList.remove("is-active");
+          }
+        });
+
+        if (!validSlides.length) {
+          slideshow.classList.add("is-empty");
+          navButtons.forEach((btn) => {
+            btn.style.display = "none";
+          });
+          if (toggleButton) toggleButton.style.display = "none";
+          if (dotsWrap) dotsWrap.style.display = "none";
+          return;
+        }
+
+        slideshow.classList.remove("is-empty");
+        if (dotsWrap) {
+          dotsWrap.style.display = validSlides.length > 1 ? "flex" : "none";
+          dotsWrap.innerHTML = validSlides.map((_, idx) => `<button class="earth-slide-dot ${idx === 0 ? "is-active" : ""}" type="button" aria-label="Go to slide ${idx + 1}" data-slide-to="${idx}"></button>`).join("");
+        }
+
+        validSlides.forEach((img, idx) => {
+          img.setAttribute("data-slide", String(idx));
+          img.classList.toggle("is-active", idx === 0);
+          img.style.display = "block";
+        });
+
+        slideshow.setAttribute("data-slide-index", "0");
+        slideshow.setAttribute("data-slide-total", String(validSlides.length));
+
+        navButtons.forEach((btn) => {
+          btn.style.display = validSlides.length > 1 ? "grid" : "none";
+        });
+
+        if (toggleButton) {
+          toggleButton.style.display = validSlides.length > 1 ? "inline-flex" : "none";
+          toggleButton.textContent = "Pause";
+          toggleButton.setAttribute("aria-label", "Pause slideshow");
+        }
+
+        const current = () => Number(slideshow.getAttribute("data-slide-index") || "0");
+        const advance = (step) => setEarthSlide(slideshow, current() + step);
+
+        let isPaused = false;
+
+        const startAuto = () => {
+          clearEarthSlideshowTimer();
+          APP.earthSlideshowTimer = setInterval(() => {
+            advance(1);
+          }, 7000);
+        };
+
+        const stopAuto = () => {
+          clearEarthSlideshowTimer();
+        };
+
+        navButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            advance(Number(button.getAttribute("data-slide-dir") || "1"));
+          });
+        });
+
+        slideshow.querySelectorAll("[data-slide-to]").forEach((dot) => {
+          dot.addEventListener("click", () => {
+            setEarthSlide(slideshow, Number(dot.getAttribute("data-slide-to") || "0"));
+          });
+        });
+
+        if (toggleButton && validSlides.length > 1) {
+          toggleButton.addEventListener("click", () => {
+            isPaused = !isPaused;
+            if (isPaused) {
+              stopAuto();
+              toggleButton.textContent = "Play";
+              toggleButton.setAttribute("aria-label", "Play slideshow");
+              return;
+            }
+
+            startAuto();
+            toggleButton.textContent = "Pause";
+            toggleButton.setAttribute("aria-label", "Pause slideshow");
+          });
+        }
+
+        if (validSlides.length > 1) {
+          startAuto();
+        }
+      });
+    }
+
     function environmentPage() {
       const env = ENVIRONMENTS[APP.env];
       const headerThumbnails = {
@@ -1080,7 +1446,7 @@
           alt: "EVA Frontier unit thumbnail"
         },
         moon: {
-          src: "https://copilot.microsoft.com/th/id/BCO.52467522-1fc1-49e9-a96a-e9d65b19dc2e.png?h=384",
+          src: "https://copilot.microsoft.com/th/id/BCO.3fd0f49e-99e5-4019-9b0a-9dd77c01ed6f.png?h=384",
           alt: "EVA Moon unit thumbnail"
         }
       };
@@ -1088,7 +1454,7 @@
       const thumb = headerThumbnails[APP.env];
       const headerClass = thumb ? "cinematic-header cinematic-header--with-thumb" : "cinematic-header";
       const headerThumbMarkup = thumb
-        ? `<img class="env-header-thumb" src="${thumb.src}" alt="${thumb.alt}" loading="lazy" />`
+        ? `<img class="env-header-thumb env-header-thumb--${APP.env}" src="${thumb.src}" alt="${thumb.alt}" loading="lazy" />`
         : "";
 
       return `
@@ -1101,9 +1467,9 @@
           </div>
 
           <div class="env-layout">
-            <article class="select-card env-preview-card" aria-hidden="true">
-              <div class="select-visual ${visualClassForEnvironment(APP.env)}">${visualNodes(APP.env)}</div>
-            </article>
+            ${APP.env === "earth" || APP.env === "frontier"
+              ? earthSlideshowMarkup(APP.env)
+              : `<article class="select-card env-preview-card" aria-hidden="true"><div class="select-visual ${visualClassForEnvironment(APP.env)}">${visualNodes(APP.env)}</div></article>`}
             <div class="structured-grid">
               <article class="structured-item">
                 <div class="structured-label">Problem</div>
@@ -1242,6 +1608,8 @@
           }
         });
       });
+
+      initEarthSlideshow(root);
 
     }
 
